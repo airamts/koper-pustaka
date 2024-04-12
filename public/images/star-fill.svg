@@ -1,0 +1,50 @@
+<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="16" height="15" fill="#1E1E1E"/>
+<g id="Tab Mode (768)">
+<path d="M-377 -1013C-377 -1014.1 -376.105 -1015 -375 -1015H2895C2896.1 -1015 2897 -1014.1 2897 -1013V2305C2897 2306.1 2896.1 2307 2895 2307H-375C-376.105 2307 -377 2306.1 -377 2305V-1013Z" fill="#404040"/>
+<path d="M-375 -1014H2895V-1016H-375V-1014ZM2896 -1013V2305H2898V-1013H2896ZM2895 2306H-375V2308H2895V2306ZM-376 2305V-1013H-378V2305H-376ZM-375 2306C-375.552 2306 -376 2305.55 -376 2305H-378C-378 2306.66 -376.657 2308 -375 2308V2306ZM2896 2305C2896 2305.55 2895.55 2306 2895 2306V2308C2896.66 2308 2898 2306.66 2898 2305H2896ZM2895 -1014C2895.55 -1014 2896 -1013.55 2896 -1013H2898C2898 -1014.66 2896.66 -1016 2895 -1016V-1014ZM-375 -1016C-376.657 -1016 -378 -1014.66 -378 -1013H-376C-376 -1013.55 -375.552 -1014 -375 -1014V-1016Z" fill="white" fill-opacity="0.1"/>
+<g id="Jelajah Buku - Tab" clip-path="url(#clip0_22_11132)">
+<rect width="768" height="2534" transform="translate(-74 -904)" fill="white"/>
+<g id="Main Container">
+<g id="Content">
+<g id="Buku berdasarkan Genre">
+<g id="Book with Tabs">
+<g id="List Card">
+<g id="Card Buku" filter="url(#filter0_d_22_11132)">
+<rect x="-10.5" y="-318.5" width="304" height="400.4" rx="7.5" stroke="#E3E8EF" shape-rendering="crispEdges"/>
+<g id="Content_2">
+<mask id="path-5-inside-1_22_11132" fill="white">
+<path d="M-11 -126H294V74.4C294 78.8183 290.418 82.4 286 82.4H-3C-7.41828 82.4 -11 78.8183 -11 74.4V-126Z"/>
+</mask>
+<path d="M-11 -126H294V74.4C294 78.8183 290.418 82.4 286 82.4H-3C-7.41828 82.4 -11 78.8183 -11 74.4V-126Z" fill="white"/>
+<path d="M-11 -127H294V-125H-11V-127ZM294 82.4H-11H294ZM-11 82.4V-126V82.4ZM294 -126V82.4V-126Z" fill="#E3E8EF" mask="url(#path-5-inside-1_22_11132)"/>
+<g id="Short Review">
+<g id="Star">
+<path id="Star 1" d="M7.90005 0.0996094L9.71861 5.69657L15.6036 5.69657L10.8425 9.15569L12.6611 14.7526L7.90005 11.2935L3.13899 14.7526L4.95755 9.15569L0.196491 5.69657L6.08149 5.69657L7.90005 0.0996094Z" fill="#FFAB49"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_22_11132" x="-27" y="-333" width="337" height="433.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="8"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_22_11132"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_22_11132" result="shape"/>
+</filter>
+<clipPath id="clip0_22_11132">
+<rect width="768" height="2534" fill="white" transform="translate(-74 -904)"/>
+</clipPath>
+</defs>
+</svg>

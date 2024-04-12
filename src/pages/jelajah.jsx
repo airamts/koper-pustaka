@@ -3,9 +3,7 @@ import CardBookApp from "../components/CardBook/CardBookApp";
 
 const JelajahPage = () => {
   return (
-    <div>
       <CardBookApp />
-    </div>
   );
 };
 

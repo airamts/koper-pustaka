@@ -3,7 +3,7 @@ import CardBookItem from "./CardBookItem";
 
 function CardBookList({cards}) {
   return (
-    <div className="card-list">
+    <div className="card-book__list">
       {cards.map((card) => (
         <CardBookItem
           key={card.id}

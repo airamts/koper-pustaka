@@ -1,12 +1,17 @@
-import React from 'react';
+import React from "react";
 
-function CardBookTitle({location, title}) {
-    return (
-        <div className='card-title d-flex flex-column'>
-            <h5 className="card-title__title">{title}</h5>
-            <p>Location: <strong>{location}</strong></p>
-        </div>
-    );
+function CardBookTitle({ location, title }) {
+  return (
+    <div className="card-book__title d-flex flex-column w-100">
+      <h5 className="mb-0">{title}</h5>
+      <div className="d-flex gap-1">
+        <img src="/images/location.svg" alt="" />
+        <p className="mb-0">
+          Location: <strong>{location}</strong>
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default CardBookTitle;

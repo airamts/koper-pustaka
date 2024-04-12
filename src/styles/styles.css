@@ -4,11 +4,86 @@
   box-sizing: border-box;
 }
 
-.welcome {
-    width: 100%;
-    height: 100vh;
+#root {
+  display: flex;
+  width: 100%;
 }
 
-.welcome h1 {
-    text-align: center;
+body {
+  display: flex;
+  margin: 0;
+}
+
+/* Jelajah */
+.card-book {
+  border-radius: 0.5rem;
+  border: 1px solid var(--Stroke, #e3e8ef);
+  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
+  min-width: 19.0625rem;
+}
+
+.card-book__img {
+  padding: 1rem 0rem;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+
+.card-book__body {
+  padding: 0.5rem 0rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+
+.card-book__title {
+  padding: 0.5rem 0.75rem;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.card-book__review {
+  padding: 0.5rem 0.75rem;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.card-book__footer {
+  padding: 0.5rem 0.75rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-book__footer__type {
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #606060;
+  align-self: stretch;
+  margin-bottom: 0;
+}
+
+.card-book__footer__fill {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--Black-Font, #243036);
+  align-self: stretch;
+  margin-bottom: 0;
+}
+
+.card-book__footer {
+  align-items: center;
+  gap: 0.25rem;
+  align-self: stretch;
+}
+
+.card-book__list {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex-wrap: wrap;
 }

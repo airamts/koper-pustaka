@@ -3,9 +3,9 @@ import React from 'react';
 function CardBookFooter({type, fill}){
     return (
         <div>
-            <div className="card-footer d-flex">
-                <p>{type}</p>
-                <p>{fill}</p>
+            <div className="card-book__footer d-flex flex-column">
+                <p className='card-book__footer__type'>{type}</p>
+                <p className='card-book__footer__fill'>{fill}</p>
             </div>
         </div>
     );
