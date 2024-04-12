@@ -18,7 +18,7 @@ class JelajalahBukuApp extends React.Component {
           <img src="/images/arrow-left.svg" alt="arrow-left" />
           <p className="mb-0">Kembali</p>
         </button>
-        <div className="container-fluid d-flex flex-column gap-4">
+        <div className="container d-flex flex-column gap-4">
           <h2 className="fs-4 fw-bold">Cari Buku Yang Kamu Inginkan</h2>
           <SearchSelection />
           <CardBookApp cards={this.state.cards} />
