@@ -14,7 +14,7 @@ function CardBookBody({
   available,
 }) {
   return (
-    <div>
+    <div className="card-body d-flex flex-column w-100">
       <div className="card-book__body d-flex flex-column">
         <CardBookTagline category={category} available={available} />
         <CardBookTitle location={location} title={title} />

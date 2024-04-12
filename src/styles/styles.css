@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Plus Jakarta Sans";
 }
 
 #root {
@@ -16,10 +17,12 @@ body {
 
 /* Jelajah */
 .card-book {
+  display: flex;
+  flex-direction: column;
+  min-width: 18rem;
   border-radius: 0.5rem;
   border: 1px solid var(--Stroke, #e3e8ef);
   box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
-  min-width: 19.0625rem;
 }
 
 .card-book__img {
@@ -41,6 +44,11 @@ body {
   padding: 0.5rem 0.75rem;
   align-items: flex-start;
   gap: 0.5rem;
+}
+
+.card-book__title h5 {
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .card-book__review {
@@ -66,7 +74,7 @@ body {
 }
 
 .card-book__footer__fill {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -84,6 +92,81 @@ body {
 .card-book__list {
   display: flex;
   align-items: flex-start;
-  gap: 1.25rem;
+  justify-content: space-between;
+  gap: 1.5rem;
   flex-wrap: wrap;
+}
+
+#nav-tab .nav-link.custom-link.active {
+  color: var(--Primary, #71cc9b);
+}
+
+.nav-link.custom-link {
+  color: var(--GRAY-2, #acb5bd);
+}
+
+.nav-link.custom-link:hover {
+  color: var(--Primary, #71cc9b);
+}
+
+.search-selection input {
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid var(--Stroke, #e3e8ef);
+  outline: none;
+}
+
+.search-selection input:focus {
+  border: 1px solid var(--Primary, #71cc9b);
+}
+
+.search-selection input::placeholder {
+  font-size: 0.9rem;
+  color: var(--Black-Font, #999999);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.search-selection input.with-icon::placeholder {
+  background-image: url("/images/search-icon.svg");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  padding-left: 25px;
+  opacity: 0.5;
+}
+
+.back-button {
+  border: none;
+  background-color: transparent;
+}
+
+.back-button p {
+  color: var(--Primary, #71cc9b);
+}
+
+@media (max-width: 767px) {
+  .card-book {
+    display: flex;
+    flex-direction: row;
+    min-width: 100%;
+  }
+  .card-book__img {
+    display: flex;
+    padding: 1rem 1.25rem;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+  }
+  .card-book__body {
+    padding: 0.5rem 0rem;
+    flex: 1 0 0;
+  }
+  .card-book__list {
+    justify-content: center;
+  }
 }

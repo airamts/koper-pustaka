@@ -5,7 +5,7 @@ const getBookData = () => ([
         title: 'A Moment To Decide',
         location: 'Sumatera Selatan',
         author: 'Dian Dhie',
-        owner: 'mikhaya',
+        owner: '@mikhaya',
         durationInMonths: "2 bulan",
         available: true,
         category: 'Romance'
@@ -16,44 +16,44 @@ const getBookData = () => ([
         title: 'Para Priyayi',
         location: 'Lampung',
         author: 'Umar K',
-        owner: 'amarullah01',
+        owner: '@amarullah01',
         durationInMonths: "2 bulan",
         available: true,
         category: 'Romance'
     },
     {
-        id: 5,
+        id: 3,
         image: '/images/book-alchemist.png',
         title: 'The Alchemist',
         location: 'Jawa Timur',
         author: 'Paulo C',
-        owner: 'amarullah01',
+        owner: '@amarullah01',
         durationInMonths: "2 bulan",
         available: true,
         category: 'Adventure'
     }, 
     {
-        id: 3,
+        id: 4,
         image: '/images/book-tentangkita.png',
         title: 'Tentang Kita',
         location: 'Banten',
         author: 'Tere Liye',
-        owner: 'faishaumi',
+        owner: '@faishaumi',
         durationInMonths: "2 bulan",
         available: true,
         category: 'Romance'
     }, 
-    {
-        id: 4,
-        image: '/images/book-storyofkiran.png',
-        title: 'Story of Kiran',
-        location: 'Jawa Barat',
-        author: 'Imam Nur',
-        owner: 'marzy',
-        durationInMonths: "2 bulan",
-        available: true,
-        category: 'Romance'
-    }, 
+    // {
+    //     id: 5,
+    //     image: '/images/book-storyofkiran.png',
+    //     title: 'Story of Kiran',
+    //     location: 'Jawa Barat',
+    //     author: 'Imam Nur',
+    //     owner: 'marzy',
+    //     durationInMonths: "2 bulan",
+    //     available: true,
+    //     category: 'Romance'
+    // }, 
 ])
 
 export {getBookData};

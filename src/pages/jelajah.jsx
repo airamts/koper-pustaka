@@ -1,10 +1,8 @@
 import React from "react";
-import CardBookApp from "../components/CardBook/CardBookApp";
+import JelajalahBukuApp from "../components/jelajah-page/JelajahBukuApp";
 
 const JelajahPage = () => {
-  return (
-      <CardBookApp />
-  );
+  return <JelajalahBukuApp />;
 };
 
 export default JelajahPage;

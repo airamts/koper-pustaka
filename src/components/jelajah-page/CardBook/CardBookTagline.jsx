@@ -8,8 +8,10 @@ function CardBookTagline({category, available}) {
                 return '/images/genre-romance.png'; 
             case 'Adventure':
                 return '/images/genre-adventure.png'; 
-            case 'Comedy':
-                return '/images/genre-comedy.png'; 
+            case 'Misteri':
+                return '/images/genre-misteri.png'; 
+            case 'Animasi':
+                return '/images/genre-animasi.png'; 
             default:
                 return 'not genre';
         }
