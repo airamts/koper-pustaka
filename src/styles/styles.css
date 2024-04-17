@@ -23,6 +23,7 @@ body {
   border-radius: 0.5rem;
   border: 1px solid var(--Stroke, #e3e8ef);
   box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .card-book__img {
