@@ -93,8 +93,8 @@ body {
 .card-book__list {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.5rem;
+  justify-content: flex-start;
+  gap: 2.5rem;
   flex-wrap: wrap;
 }
 
