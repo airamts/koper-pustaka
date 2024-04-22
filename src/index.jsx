@@ -4,6 +4,7 @@ import KoperPustakaApp from "./components/KoperPustakaApp";
 import LoginPage from "./pages/login";
 import HomePage from "./pages/home";
 import JelajahPage from "./pages/jelajah";
+import DetailPage from "./pages/detail";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
     path: "/jelajah",
     element: <JelajahPage />,
   },
+  {
+    path: "/book/:title",
+    element: <DetailPage />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
