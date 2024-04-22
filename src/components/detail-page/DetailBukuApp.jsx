@@ -14,13 +14,9 @@ class DetailBukuApp extends React.Component {
     const { params } = match || {};
     const { title } = params || {};
 
-    console.log("Judul buku dari URL:", title);
-
     const book = getBookData().find(
       (book) => book.title && book.title === title
     );
-
-    console.log("Data buku:", book);
 
     if (book) {
       this.setState({ book });
