@@ -1,5 +1,6 @@
 import React from "react";
 import { getBookData } from "../../utils/dataBuku";
+import DetailBookBody from "./DetailBook/DetailBookBody";
 
 class DetailBukuApp extends React.Component {
   constructor(props) {
@@ -41,7 +42,18 @@ class DetailBukuApp extends React.Component {
           <img src="/images/arrow-left.svg" alt="arrow-left" />
           <p className="mb-0">Kembali</p>
         </button>
-        <h1>{book.title}</h1>
+        <div className="detail-book d-flex flex-column justify-content-center gap-4">
+          <h1 className="mb-0 text-center fw-semibold">{book.title}</h1>
+          <DetailBookBody
+            author={book.author}
+            durationInMonths={book.durationInMonths}
+            peminjam={book.peminjam}
+            location={book.location}
+            owner={book.owner}
+            id={book.id}
+            isAvailable={book.available}
+          />
+        </div>
       </div>
     );
   }

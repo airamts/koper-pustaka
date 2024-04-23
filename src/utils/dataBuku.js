@@ -8,7 +8,8 @@ const getBookData = () => ([
         owner: '@mikhaya',
         durationInMonths: "2 bulan",
         available: true,
-        category: 'Romance'
+        category: 'Romance',
+        peminjam: 10,
     },
     {
         id: 2,
@@ -19,7 +20,8 @@ const getBookData = () => ([
         owner: '@amarullah01',
         durationInMonths: "2 bulan",
         available: true,
-        category: 'Romance'
+        category: 'Romance',
+        peminjam: 10,
     },
     {
         id: 3,
@@ -30,7 +32,8 @@ const getBookData = () => ([
         owner: '@amarullah01',
         durationInMonths: "2 bulan",
         available: true,
-        category: 'Adventure'
+        category: 'Adventure',
+        peminjam: 10,
     }, 
     {
         id: 4,
@@ -41,7 +44,8 @@ const getBookData = () => ([
         owner: '@faishaumi',
         durationInMonths: "2 bulan",
         available: true,
-        category: 'Romance'
+        category: 'Romance',
+        peminjam: 10,
     }, 
     // {
     //     id: 5,

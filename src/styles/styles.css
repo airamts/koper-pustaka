@@ -155,6 +155,79 @@ body {
   transition: transform 0.3s ease;
 }
 
+/* Detail Book */
+.detail-book__footer__type {
+  margin-bottom: 0;
+  color: #606060;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.detail-book__footer__fill {
+  margin-bottom: 0;
+  color: var(--Black-Font, #243036);
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.detail-book__owner h5 {
+  color: #606060;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.detail-book__owner p {
+  color: var(--Black-Font, #243036);
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.button-pinjam button {
+  display: flex;
+  padding: 1rem 2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
+}
+
+.button-pinjam__available {
+  background: var(--Black-Font, #243036);
+}
+
+.button-pinjam__available p {
+  color: var(--Base-Color, #fafffb);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.button-pinjam__unavailable {
+  background: var(--Base-Color, #fafffb);
+}
+
+.button-pinjam__unavailable p {
+  color: var(--Black-Font, #243036);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
 @media (max-width: 768px) {
   .card-book {
     display: flex;
