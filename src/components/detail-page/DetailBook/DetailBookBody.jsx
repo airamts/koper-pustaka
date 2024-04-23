@@ -6,18 +6,18 @@ import ButtonPinjam from "./ButtonPinjam";
 function DetailBookBody({
   author,
   owner,
+  avatar,
   durationInMonths,
   location,
   peminjam,
   isAvailable,
   id,
-  onLoan,
 }) {
   return (
     <div className="detail-book__body d-flex flex-column gap-4">
-      <ButtonPinjam id={id} isAvailable={isAvailable} onLoan={onLoan}/>
+      <ButtonPinjam id={id} isAvailable={isAvailable} />
       <div className="detail-book__body__owner">
-        <DetailBookOwner owner={owner} />
+        <DetailBookOwner owner={owner} avatar={avatar}/>
       </div>
       <div className="detail-book__body__footer d-flex w-100 justify-content-around">
         <DetailBookFooter

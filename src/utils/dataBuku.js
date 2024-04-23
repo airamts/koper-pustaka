@@ -6,10 +6,12 @@ const getBookData = () => ([
         location: 'Sumatera Selatan',
         author: 'Dian Dhie',
         owner: '@mikhaya',
+        avatar: '/images/user-mikhaya.png',
         durationInMonths: "2 bulan",
         available: true,
         category: 'Romance',
         peminjam: 10,
+        description: 'Buku yang menurut saya sangat asik untuk dibaca, untuk kalian yang ingin membaca komik yang seru, saya rekomendasikan untuk baca ini. Saya berharap buku ini akan terus dilanjutkan. Biar makin banyak bibit-bibit orang hebat di negeri kita!'
     },
     {
         id: 2,
@@ -18,10 +20,12 @@ const getBookData = () => ([
         location: 'Lampung',
         author: 'Umar K',
         owner: '@amarullah01',
+        avatar: '/images/user-mikhaya.png',
         durationInMonths: "2 bulan",
         available: true,
         category: 'Romance',
         peminjam: 10,
+        description: 'Buku yang menurut saya sangat asik untuk dibaca, untuk kalian yang ingin membaca komik yang seru, saya rekomendasikan untuk baca ini. Saya berharap buku ini akan terus dilanjutkan. Biar makin banyak bibit-bibit orang hebat di negeri kita!'
     },
     {
         id: 3,
@@ -30,10 +34,12 @@ const getBookData = () => ([
         location: 'Jawa Timur',
         author: 'Paulo C',
         owner: '@amarullah01',
+        avatar: '/images/user-mikhaya.png',
         durationInMonths: "2 bulan",
         available: true,
         category: 'Adventure',
         peminjam: 10,
+        description: 'Buku yang menurut saya sangat asik untuk dibaca, untuk kalian yang ingin membaca komik yang seru, saya rekomendasikan untuk baca ini. Saya berharap buku ini akan terus dilanjutkan. Biar makin banyak bibit-bibit orang hebat di negeri kita!'
     }, 
     {
         id: 4,
@@ -42,10 +48,12 @@ const getBookData = () => ([
         location: 'Banten',
         author: 'Tere Liye',
         owner: '@faishaumi',
+        avatar: '/images/user-mikhaya.png',
         durationInMonths: "2 bulan",
         available: true,
         category: 'Romance',
         peminjam: 10,
+        description: 'Buku yang menurut saya sangat asik untuk dibaca, untuk kalian yang ingin membaca komik yang seru, saya rekomendasikan untuk baca ini. Saya berharap buku ini akan terus dilanjutkan. Biar makin banyak bibit-bibit orang hebat di negeri kita!'
     }, 
     // {
     //     id: 5,

@@ -2,8 +2,8 @@ import React from "react";
 
 function CardBookReview() {
   return (
-    <div className="card-book__review d-flex gap-2 w-100">
-      <div className="card-review__stars align-items-center">
+    <div className="card-book__review d-flex gap-2">
+      <div className="card-review__stars d-flex align-items-center">
         <img src="/images/star-fill.svg" alt="review" />
         <img src="/images/star-fill.svg" alt="review" />
         <img src="/images/star-fill.svg" alt="review" />
