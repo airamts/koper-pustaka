@@ -18,7 +18,9 @@ function CardBookBody({
       <div className="card-book__body d-flex flex-column">
         <CardBookTagline category={category} available={available} />
         <CardBookTitle location={location} title={title} />
-        <CardBookReview />
+        <div className="d-flex w-100">
+          <CardBookReview />
+        </div>
         <div className="card-body__footer d-flex w-100 justify-content-between">
           <CardBookFooter type="Penulis" fill={author} />
           <CardBookFooter type="Pemilik" fill={owner} />

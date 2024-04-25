@@ -15,6 +15,8 @@ class DetailBukuApp extends React.Component {
       book: null,
       reviews: getReviewBook(),
     };
+    this.bookDescriptionRef = React.createRef();
+    this.reviewBookRef = React.createRef();
   }
 
   componentDidMount() {
@@ -30,6 +32,14 @@ class DetailBukuApp extends React.Component {
       this.setState({ book });
     }
   }
+
+  handleScrollToDescription = () => {
+    this.bookDescriptionRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  handleScrollToReview = () => {
+    this.reviewBookRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   render() {
     const { book } = this.state;
@@ -50,7 +60,7 @@ class DetailBukuApp extends React.Component {
           <p className="mb-0">Kembali</p>
         </button>
         <div className="detail-book d-flex flex-column justify-content-center gap-4">
-          <h4 className="mb-0 text-center fw-semibold">Detail Buku</h4>
+          <h4 className="mb-4 text-start fw-bold fs-5">Detail Buku</h4>
           <BookCarousel image={book.image} />
           <h4 className="mb-0 text-center fw-bold">{book.title}</h4>
           <DetailBookTag category={book.category} />
@@ -66,9 +76,14 @@ class DetailBukuApp extends React.Component {
             avatar={book.avatar}
           />
           <div className="book-detail__desc-review d-flex flex-column">
-            <DetailBookTab />
-            <BookDescription description={book.description} />
-            <div className="mt-4">
+            <DetailBookTab
+              handleScrollToDescription={this.handleScrollToDescription}
+              handleScrollToReview={this.handleScrollToReview}
+            />
+            <div ref={this.bookDescriptionRef}>
+              <BookDescription description={book.description} />
+            </div>
+            <div className="mt-4" ref={this.reviewBookRef}>
               <p className="fs-6 fw-bold mb-2">Review Buku</p>
               <ReviewBookList reviews={this.state.reviews} />
             </div>

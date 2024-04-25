@@ -1,6 +1,6 @@
 import React from "react";
 
-function DetailBookTab() {
+function DetailBookTab({handleScrollToDescription, handleScrollToReview}) {
   return (
       <nav>
         <div className="nav nav-underline mb-4" id="nav-tab" role="tablist">
@@ -13,6 +13,7 @@ function DetailBookTab() {
             role="tab"
             aria-controls="all"
             aria-selected="true"
+            onClick={handleScrollToDescription}
           >
             Deskripsi Buku
           </button>
@@ -25,6 +26,7 @@ function DetailBookTab() {
             role="tab"
             aria-controls="romance"
             aria-selected="false"
+            onClick={handleScrollToReview}
           >
             Review Buku
           </button>

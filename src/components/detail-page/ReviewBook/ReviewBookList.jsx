@@ -3,7 +3,7 @@ import ReviewBookItem from "./ReviewBookItem";
 
 function ReviewBookList({ reviews }) {
   return (
-    <div className="review-book__list d-flex">
+    <div className="review-book__list d-flex justify-content-between my-4">
       {reviews.length ? (
         reviews.map((review) => (
           <ReviewBookItem

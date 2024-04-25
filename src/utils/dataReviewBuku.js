@@ -40,6 +40,20 @@ const getReviewBook = () => ([
         reviewer: 'Tio Wardoyo',
         numberLoan: 6,
         comment: 'Bukunya menarik sekali untuk dibaca, pokoknya ini buku bikin membuat saya termotivasi menjalani hidup. Kondisi fisik bukunya masih bagus, kemarin pas aku selesai baca engga ada robek ataupun terlipat.'
+    },
+    {
+        id: 7,
+        avatar: '/images/user-fitria.png',
+        reviewer: 'Maulana Suhartoyo',
+        numberLoan: 7,
+        comment: 'Bukunya menarik sekali untuk dibaca, pokoknya ini buku bikin membuat saya termotivasi menjalani hidup. Kondisi fisik bukunya masih bagus, kemarin pas aku selesai baca engga ada robek ataupun terlipat.'
+    },
+    {
+        id: 8,
+        avatar: '/images/user-fitria.png',
+        reviewer: 'Sadil Isra',
+        numberLoan: 8,
+        comment: 'Bukunya menarik sekali untuk dibaca, pokoknya ini buku bikin membuat saya termotivasi menjalani hidup. Kondisi fisik bukunya masih bagus, kemarin pas aku selesai baca engga ada robek ataupun terlipat.'
     }
 ])
 

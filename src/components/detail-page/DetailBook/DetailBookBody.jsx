@@ -19,7 +19,7 @@ function DetailBookBody({
       <div className="detail-book__body__owner">
         <DetailBookOwner owner={owner} avatar={avatar}/>
       </div>
-      <div className="detail-book__body__footer d-flex w-100 justify-content-around">
+      <div className="detail-book__body__footer d-flex w-100 gap-4 justify-content-around">
         <DetailBookFooter
           icon="/images/icon-penulis.svg"
           type="Penulis:"
