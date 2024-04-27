@@ -5,6 +5,7 @@ import LoginPage from "./pages/login";
 import HomePage from "./pages/home";
 import JelajahPage from "./pages/jelajah";
 import DetailPage from "./pages/detail";
+import PinjamBukuPage from "./pages/pinjam";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/book/:title",
     element: <DetailPage />,
+  },
+  {
+    path: "/book/:title/:id/pinjam",
+    element: <PinjamBukuPage />,
   }
 ]);
 

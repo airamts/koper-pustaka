@@ -15,6 +15,12 @@ body {
   margin: 0;
 }
 
+@media (max-width: 576px) {
+  .container {
+    max-width: 90%;
+  }
+}
+
 /* Jelajah */
 .card-book {
   display: flex;
@@ -308,5 +314,90 @@ body {
   .detail-book__body__footer {
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+}
+
+/* Form Order */
+.detail-form__body__title__type {
+  color: #606060;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.detail-form__body__title__fill {
+  color: var(--Black-Font, #243036);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.detail-form__content {
+  padding: 0.75rem 1.5rem;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--Stroke, #e3e8ef);
+}
+
+.content-row__1 {
+  gap: 2rem;
+}
+
+.TnC-pinjam__item h6 {
+  color: #71cc9b;
+}
+
+.TnC-pinjam__buku {
+  display: flex;
+  padding: 1.5rem 2rem;
+  gap: 2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--Stroke, #e3e8ef);
+}
+
+.pinjam-form {
+  gap: 3rem;
+}
+
+.pinjam-form .content-row {
+  gap: 3rem;
+}
+
+.pinjam-form button {
+  display: flex;
+  padding: 1.5rem 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+
+  color: white;
+  border-radius: 0.5rem;
+  background: var(--Black-Font, #243036);
+  border: 1px solid var(--Stroke, #e3e8ef);
+  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
+}
+
+.pinjam-form button:hover {
+  background: #47545a;
+}
+
+.alasan-pinjam textarea::placeholder {
+  color: #CFCFCF;
+}
+  
+.radio-label input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 992px) {
+  .alasan-pinjam textarea {
+    height: 198px;
   }
 }

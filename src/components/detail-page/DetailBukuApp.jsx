@@ -7,6 +7,7 @@ import BookDescription from "./DetailBook/BookDescription";
 import DetailBookTag from "./DetailBook/DetailBookTag";
 import ReviewBookList from "./ReviewBook/ReviewBookList";
 import { getReviewBook } from "../../utils/dataReviewBuku";
+import { Link } from "react-router-dom";
 
 class DetailBukuApp extends React.Component {
   constructor(props) {
@@ -55,10 +56,12 @@ class DetailBukuApp extends React.Component {
 
     return (
       <div className="container d-flex flex-column gap-4 px-0">
-        <button className="back-button d-flex align-items-center gap-2">
+        <Link to={`/jelajah`} style={{ textDecoration: "none" }}>
+        <button className="back-button d-flex align-items-center gap-2 my-4">
           <img src="/images/arrow-left.svg" alt="arrow-left" />
           <p className="mb-0">Kembali</p>
         </button>
+        </Link>
         <div className="detail-book d-flex flex-column justify-content-center gap-4">
           <h4 className="mb-4 text-start fw-bold fs-5">Detail Buku</h4>
           <BookCarousel image={book.image} />
@@ -74,6 +77,7 @@ class DetailBukuApp extends React.Component {
             isAvailable={book.available}
             image={book.image}
             avatar={book.avatar}
+            title={book.title}
           />
           <div className="book-detail__desc-review d-flex flex-column">
             <DetailBookTab

@@ -46,7 +46,7 @@ class JelajalahBukuApp extends React.Component {
 
     return (
       <div className="container d-flex flex-column gap-4">
-        <button className="back-button d-flex align-items-center gap-2">
+        <button className="back-button d-flex align-items-center gap-2 my-4">
           <img src="/images/arrow-left.svg" alt="arrow-left" />
           <p className="mb-0">Kembali</p>
         </button>

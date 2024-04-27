@@ -12,10 +12,11 @@ function DetailBookBody({
   peminjam,
   isAvailable,
   id,
+  title,
 }) {
   return (
     <div className="detail-book__body d-flex flex-column gap-4">
-      <ButtonPinjam id={id} isAvailable={isAvailable} />
+      <ButtonPinjam id={id} isAvailable={isAvailable} title={title}/>
       <div className="detail-book__body__owner">
         <DetailBookOwner owner={owner} avatar={avatar}/>
       </div>
