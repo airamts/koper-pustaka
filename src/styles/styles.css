@@ -32,6 +32,11 @@ body {
   cursor: pointer;
 }
 
+.card-book:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
 .card-book__img {
   padding: 1rem 0rem;
   justify-content: center;
@@ -154,11 +159,6 @@ body {
 
 .back-button p {
   color: var(--Primary, #71cc9b);
-}
-
-.card-book:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
 }
 
 @media (max-width: 768px) {

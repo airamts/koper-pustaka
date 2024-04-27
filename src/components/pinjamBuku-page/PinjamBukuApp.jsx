@@ -5,8 +5,19 @@ import DetailBukuForm from "./PinjamBuku/DetailBukuForm";
 import AlasanPinjamForm from "./PinjamBuku/AlasanPinjamForm";
 import MetodeKirimForm from "./PinjamBuku/MetodeKirimForm";
 import TnCPinjamBuku from "./PinjamBuku/TnCPinjamBuku";
+import ButtonLanjutkan from "./PinjamBuku/ButtonLanjutkan";
 
 class PinjamBukuApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onNextHandler = this.onNextHandler.bind(this);
+  }
+
+  onNextHandler(event) {
+    event.preventDefault();
+    console.log("Pinjam Buku Berhasil!", this.props);
+    alert("Pinjam Buku Berhasil!");
+  }
   render() {
     const { title, id, image, durationInMonths } = this.props;
 
@@ -39,9 +50,7 @@ class PinjamBukuApp extends React.Component {
           </div>
           <div className="pinjam-TnC d-flex flex-column gap-4 align-items-end">
             <TnCPinjamBuku />
-            <button type="submit" className="fw-semibold mb-0">
-              Lanjutkan
-            </button>
+            <ButtonLanjutkan onLanjut={this.onNextHandler}/>
           </div>
         </form>
       </div>
