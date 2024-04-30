@@ -2,6 +2,8 @@ const getBookData = () => ([
     {
         id: 1,
         image: '/images/book-moment.png',
+        image2: '/images/book-priyayi.png',
+        image3: '/images/book-alchemist.png',
         title: 'A Moment To Decide',
         location: 'Sumatera Selatan',
         author: 'Dian Dhie',
@@ -16,6 +18,8 @@ const getBookData = () => ([
     {
         id: 2,
         image: '/images/book-priyayi.png',
+        image2: '/images/book-priyayi.png',
+        image3: '/images/book-alchemist.png',
         title: 'Para Priyayi',
         location: 'Lampung',
         author: 'Umar K',
@@ -30,6 +34,8 @@ const getBookData = () => ([
     {
         id: 3,
         image: '/images/book-alchemist.png',
+        image2: '/images/book-priyayi.png',
+        image3: '/images/book-alchemist.png',
         title: 'The Alchemist',
         location: 'Jawa Timur',
         author: 'Paulo C',
@@ -44,6 +50,8 @@ const getBookData = () => ([
     {
         id: 4,
         image: '/images/book-tentangkita.png',
+        image2: '/images/book-priyayi.png',
+        image3: '/images/book-alchemist.png',
         title: 'Tentang Kita',
         location: 'Banten',
         author: 'Tere Liye',

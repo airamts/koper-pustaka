@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function BookCarousel({ image }) {
+function BookCarousel({ image, image2, image3 }) {
   return (
     <div className="d-flex justify-content-center">
       <div className="book-carousel d-flex flex-column w-70">
@@ -33,16 +33,16 @@ function BookCarousel({ image }) {
           </div>
           <div
             className="carousel-inner d-fex align-items-center justify-content-center"
-            style={{ height: "26rem" }}
+            style={{ height: "26rem", width: "24rem" }}
           >
-            <div className="carousel-item active d-flex align-items-center justify-content-center">
-              <img src={image} style={{ width: "16rem" }} alt="image" />
+            <div className="carousel-item active">
+              <img src={image} className="d-block mx-auto" style={{ width: "16rem", objectFit: "cover" }} alt="image" />
             </div>
-            <div className="carousel-item d-flex align-items-center justify-content-center">
-              <img src={image} style={{ width: "16rem" }} alt="image" />
+            <div className="carousel-item">
+              <img src={image2} className="d-block mx-auto" style={{ width: "16rem", objectFit: "cover" }} alt="image" />
             </div>
-            <div className="carousel-item d-flex align-items-center justify-content-center">
-              <img src={image} style={{ width: "16rem" }} alt="image" />
+            <div className="carousel-item">
+              <img src={image3} className="d-block mx-auto" style={{ width: "16rem", objectFit: "cover" }} alt="image" />
             </div>
           </div>
           <button

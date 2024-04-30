@@ -64,7 +64,7 @@ class DetailBukuApp extends React.Component {
         </Link>
         <div className="detail-book d-flex flex-column justify-content-center gap-4">
           <h4 className="mb-4 text-start fw-bold fs-5">Detail Buku</h4>
-          <BookCarousel image={book.image} />
+          <BookCarousel image={book.image} image2={book.image2} image3={book.image3}/>
           <h4 className="mb-0 text-center fw-bold">{book.title}</h4>
           <DetailBookTag category={book.category} />
           <DetailBookBody

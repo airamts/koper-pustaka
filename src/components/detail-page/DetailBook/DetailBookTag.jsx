@@ -20,7 +20,7 @@ function CardBookTagline({category}) {
 
     return (
         <div className='card-book__tagline d-flex align-items-center justify-content-center px-2 w-100 gap-2'>
-            <img src={getImageUrlByCategory(category)} alt="genre" style={{ width: '6rem' }}/>
+            <img src={getImageUrlByCategory(category)} alt="genre" style={{ width: '8rem' }}/>
             <CardBookReview />
         </div>
     );
