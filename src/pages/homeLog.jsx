@@ -1,17 +1,17 @@
-import NavigationBar from '../components/homepage/navigationBar';
+import NavigationBarLog from '../components/homepage/navigationBarLog';
 import Intro from '../components/homepage/intro';
 import Features from '../components/homepage/features';
-import RecentActivity from '../components/homepage/recentActivity';
+import RecentActivityLog from '../components/homepage/recentActivityLog';
 import Review from '../components/homepage/review';
 import Footer from '../components/homepage/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/landingPage.css"
 
-const LandingPage = () => {
+const homeLog = () => {
     return (
         <div>
             <div id='navbar'>
-                <NavigationBar />
+                <NavigationBarLog />
             </div>
 
             <div id='intro'>
@@ -23,7 +23,7 @@ const LandingPage = () => {
             </div>
 
             <div id='recentActivity'>
-                <RecentActivity />
+                <RecentActivityLog />
             </div>
 
             <div id='review'>
@@ -37,4 +37,4 @@ const LandingPage = () => {
     )
 }
 
-export default LandingPage
+export default homeLog
