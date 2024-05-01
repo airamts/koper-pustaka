@@ -1,7 +1,7 @@
 import { Navbar, Container, Nav, Image, Button, Form } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import logoImage from "../../assets/Logo/Logo.svg"
-import searchIcon from "../../assets/Icon/ic_round-search.svg"
+import logoImage from "/assets/Logo/Logo.svg"
+import searchIcon from "/assets/Icon/ic_round-search.svg"
 
 const NavigationBar = () => {
     return (

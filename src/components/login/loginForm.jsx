@@ -1,7 +1,7 @@
 import { Form, Button, Image, InputGroup } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import logoImage from "../../assets/Logo/Logo.svg";
-import googleLogo from "../../assets/Logo/Google Logo.svg";
+import logoImage from "/assets/Logo/Logo.svg";
+import googleLogo from "/assets/Logo/Google Logo.svg";
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useState } from 'react';

@@ -1,7 +1,7 @@
 import { Form, Button, Image, Modal } from 'react-bootstrap';
 import { Link } from "react-router-dom"
-import googleLogo from "../../assets/Logo/Google Logo.svg"
-import resetPassword from "../../assets/Icon/reset-password.svg"
+import googleLogo from "/assets/Logo/Google Logo.svg"
+import resetPassword from "/assets/Icon/reset-password.svg"
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';

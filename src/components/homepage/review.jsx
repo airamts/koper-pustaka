@@ -1,11 +1,11 @@
 import { Container, Row, Col, Image, Button, Navbar, Nav } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import bukuSatu from "../../assets/Buku/Buku 1.png"
-import bukuDua from "../../assets/Buku/Buku 2.png"
-import bukuTiga from "../../assets/Buku/Buku 3.png"
-import starLight from "../../assets/Icon/Star Light.svg"
-import starDark from "../../assets/Icon/Star Dark.svg"
-import profileUser from "../../assets/Profil/profilFitria.png"
+import bukuSatu from "/assets/Buku/Buku 1.png"
+import bukuDua from "/assets/Buku/Buku 2.png"
+import bukuTiga from "/assets/Buku/Buku 3.png"
+import starLight from "/assets/Icon/Star Light.svg"
+import starDark from "/assets/Icon/Star Dark.svg"
+import profileUser from "/assets/Profil/profilFitria.png"
 
 const Review = () => {
     return (

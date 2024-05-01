@@ -1,5 +1,5 @@
 import { Container, Row, Col, Image } from "react-bootstrap"
-import mustLoginIllustration from "../../assets/Illustration/login-dulu.svg"
+import mustLoginIllustration from "/assets/Illustration/login-dulu.svg"
 
 const RecentActivity = () => {
     return (
