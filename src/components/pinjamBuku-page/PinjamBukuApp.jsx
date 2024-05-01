@@ -69,7 +69,7 @@ class PinjamBukuApp extends React.Component {
         </form>
         <Modal
           isOpen={this.state.showNotify}
-          onRequestClose={this.toggleNotify}
+          // onRequestClose={this.toggleNotify}
           className="notify-successful d-flex flex-column align-items-center justify-content-center w-lg-25 w-sm-100"
         >
           <NotifySuccessful title={title} />

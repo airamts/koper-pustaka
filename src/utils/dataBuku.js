@@ -1,6 +1,6 @@
 const getBookData = () => ([
     {
-        id: 1,
+        id: 123,
         image: '/images/book-moment.png',
         image2: '/images/book-priyayi.png',
         image3: '/images/book-alchemist.png',
@@ -16,7 +16,7 @@ const getBookData = () => ([
         description: 'Buku yang menurut saya sangat asik untuk dibaca, untuk kalian yang ingin membaca komik yang seru, saya rekomendasikan untuk baca ini. Saya berharap buku ini akan terus dilanjutkan. Biar makin banyak bibit-bibit orang hebat di negeri kita!'
     },
     {
-        id: 2,
+        id: 234,
         image: '/images/book-priyayi.png',
         image2: '/images/book-priyayi.png',
         image3: '/images/book-alchemist.png',
@@ -32,7 +32,7 @@ const getBookData = () => ([
         description: 'Buku yang menurut saya sangat asik untuk dibaca, untuk kalian yang ingin membaca komik yang seru, saya rekomendasikan untuk baca ini. Saya berharap buku ini akan terus dilanjutkan. Biar makin banyak bibit-bibit orang hebat di negeri kita!'
     },
     {
-        id: 3,
+        id: 356,
         image: '/images/book-alchemist.png',
         image2: '/images/book-priyayi.png',
         image3: '/images/book-alchemist.png',
@@ -48,7 +48,7 @@ const getBookData = () => ([
         description: 'Buku yang menurut saya sangat asik untuk dibaca, untuk kalian yang ingin membaca komik yang seru, saya rekomendasikan untuk baca ini. Saya berharap buku ini akan terus dilanjutkan. Biar makin banyak bibit-bibit orang hebat di negeri kita!'
     }, 
     {
-        id: 4,
+        id: 456,
         image: '/images/book-tentangkita.png',
         image2: '/images/book-priyayi.png',
         image3: '/images/book-alchemist.png',
