@@ -1,10 +1,10 @@
 import { Image } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
-import GambarSatu from "../../assets/Carousel/CarouselIMG/Gambar 1.png"
-import GambarDua from "../../assets/Carousel/CarouselIMG/Gambar 2.png"
-import GambarTiga from "../../assets/Carousel/CarouselIMG/Gambar 3.png"
-import GambarEmpat from "../../assets/Carousel/CarouselIMG/Gambar 4.png"
-import GambarLima from "../../assets/Carousel/CarouselIMG/Gambar 5.png"
+import GambarSatu from "/assets/Carousel/CarouselIMG/Gambar 1.png"
+import GambarDua from "/assets/Carousel/CarouselIMG/Gambar 2.png"
+import GambarTiga from "/assets/Carousel/CarouselIMG/Gambar 3.png"
+import GambarEmpat from "/assets/Carousel/CarouselIMG/Gambar 4.png"
+import GambarLima from "/assets/Carousel/CarouselIMG/Gambar 5.png"
 import "../../styles/login.css"
 
 const CarouselLogin = () => {

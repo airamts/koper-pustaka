@@ -1,5 +1,5 @@
 import { Container, Row, Col, Image } from "react-bootstrap"
-import udahLogin from "../../assets/Illustration/noActivity.svg"
+import udahLogin from "/assets/Illustration/noActivity.svg"
 
 const RecentActivityLog = () => {
     return (

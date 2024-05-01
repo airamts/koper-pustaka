@@ -1,6 +1,6 @@
 import { Container, Row, Col, Image } from 'react-bootstrap';
-import pencilIco from "../../assets/Icon/pencil-square.svg"
-import bookIco from "../../assets/Icon/tabler_book.svg"
+import pencilIco from "/assets/Icon/pencil-square.svg"
+import bookIco from "/assets/Icon/tabler_book.svg"
 
 const Features = () => {
     return(

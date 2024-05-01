@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Image, Modal } from 'react-bootstrap';
 import { Link } from "react-router-dom"
-import googleLogo from "../../assets/Logo/Google Logo.svg"
-import mailIn from "../../assets/Illustration/mailIn.svg"
+import googleLogo from "/assets/Logo/Google Logo.svg"
+import mailIn from "/assets/Illustration/mailIn.svg"
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
