@@ -380,6 +380,10 @@ body {
   background: #47545a;
 }
 
+.pinjam-button:disabled {
+  background: #DADADA
+}
+
 .alasan-pinjam textarea::placeholder {
   color: #cfcfcf;
 }

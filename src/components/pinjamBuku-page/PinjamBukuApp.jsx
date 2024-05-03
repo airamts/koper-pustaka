@@ -15,9 +15,11 @@ class PinjamBukuApp extends React.Component {
     super(props);
     this.state = {
       showNotify: false,
+      isChecked: false,
     };
     this.onNextHandler = this.onNextHandler.bind(this);
     this.toggleNotify = this.toggleNotify.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   }
 
   onNextHandler(event) {
@@ -30,6 +32,10 @@ class PinjamBukuApp extends React.Component {
     this.setState((prevState) => ({
       showNotify: !prevState.showNotify,
     }));
+  }
+
+  handleCheckboxChange() {
+    this.setState({ isChecked: !this.state.isChecked });
   }
 
   render() {
@@ -63,8 +69,8 @@ class PinjamBukuApp extends React.Component {
             </div>
           </div>
           <div className="pinjam-TnC d-flex flex-column gap-4 align-items-end">
-            <TnCPinjamBuku />
-            <ButtonLanjutkan onLanjut={this.onNextHandler} />
+            <TnCPinjamBuku isChecked={this.handleCheckboxChange}/>
+            <ButtonLanjutkan onLanjut={this.onNextHandler} isChecked={this.state.isChecked}/>
           </div>
         </form>
         <Modal
