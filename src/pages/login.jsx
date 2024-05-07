@@ -1,11 +1,17 @@
-import React from 'react'
+import { Row, Col } from 'react-bootstrap';
+import LoginForm from '../components/login/loginForm';
+import CarouselLogin from '../components/login/carousel';
+import "../styles/login.css"
 
-const LoginPage = () => {
+function Login() {
     return (
-        <div>
-            <h1>Anda di Login Page</h1>
+        <div className='containerLogin'>
+            <Row className='containerRow'>
+                <Col><CarouselLogin /></Col>
+                <Col><LoginForm /></Col>
+            </Row>
         </div>
     )
 }
 
-export default LoginPage;
+export default Login
