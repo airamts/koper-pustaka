@@ -16,16 +16,44 @@ class PinjamBukuApp extends React.Component {
     this.state = {
       showNotify: false,
       isChecked: false,
+      alasanPinjam: "",
+      isAlasanValid: true,
+      isMetodeValid: true,
+      selectedOption: "",
     };
     this.onNextHandler = this.onNextHandler.bind(this);
     this.toggleNotify = this.toggleNotify.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.handleAlasanPinjamChange = this.handleAlasanPinjamChange.bind(this);
+    this.handleMetodeChange = this.handleMetodeChange.bind(this);
   }
 
   onNextHandler(event) {
     event.preventDefault();
-    console.log("Pinjam Buku Berhasil!", this.props);
-    this.toggleNotify();
+
+    if (this.state.alasanPinjam.trim() === "") {
+      this.setState({ isAlasanValid: false });
+      return;
+    } else {
+      this.setState({ isAlasanValid: true });
+    }
+
+    if (!this.state.selectedOption) {
+      this.setState({ isMetodeValid: false });
+      return;
+    } else {
+      this.setState({ isMetodeValid: true });
+    }
+
+    console.log("onNextHandler called");
+    console.log("isAlasanValid:", this.state.isAlasanValid);
+    console.log("isMetodeValid:", this.state.isMetodeValid);
+
+    if (this.state.isAlasanValid && this.state.isMetodeValid) {
+      console.log("Pinjam Buku Berhasil!", this.props);
+      this.toggleNotify();
+      console.log("show notify", this.state.showNotify);
+    }
   }
 
   toggleNotify() {
@@ -38,8 +66,17 @@ class PinjamBukuApp extends React.Component {
     this.setState({ isChecked: !this.state.isChecked });
   }
 
+  handleAlasanPinjamChange(event) {
+    this.setState({ alasanPinjam: event.target.value });
+    this.setState({ isAlasanValid: event.target.value.trim() !== "" });
+  }
+
+  handleMetodeChange(selectedOption) {
+    this.setState({ selectedOption, isMetodeValid: selectedOption !== "" });
+  }
+
   render() {
-    const { title, id, image, durationInMonths } = this.props;
+    const { title, image, durationInMonths } = this.props;
 
     return (
       <div className="container d-flex flex-column gap-4 my-4">
@@ -62,15 +99,25 @@ class PinjamBukuApp extends React.Component {
                 pinjamDate={new Date().toLocaleDateString()}
                 durationInMonths={durationInMonths}
               />
-              <AlasanPinjamForm />
+              <AlasanPinjamForm
+                alasanPinjam={this.state.alasanPinjam}
+                onAlasanPinjamChange={this.handleAlasanPinjamChange}
+                isAlasanValid={this.state.isAlasanValid}
+              />
             </div>
             <div className="content-row__2 d-flex">
-              <MetodeKirimForm />
+              <MetodeKirimForm
+                handleMetodeChange={this.handleMetodeChange}
+                isMetodeValid={this.state.isMetodeValid}
+              />
             </div>
           </div>
           <div className="pinjam-TnC d-flex flex-column gap-4 align-items-end">
-            <TnCPinjamBuku isChecked={this.handleCheckboxChange}/>
-            <ButtonLanjutkan onLanjut={this.onNextHandler} isChecked={this.state.isChecked}/>
+            <TnCPinjamBuku isChecked={this.handleCheckboxChange} />
+            <ButtonLanjutkan
+              onLanjut={this.onNextHandler}
+              isChecked={this.state.isChecked}
+            />
           </div>
         </form>
         <Modal
