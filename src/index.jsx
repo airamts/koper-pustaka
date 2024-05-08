@@ -12,6 +12,7 @@ import PinjamBukuPage from "./pages/pinjam";
 import Modal from "react-modal";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+Modal.setAppElement('#root');
 const router =  createBrowserRouter ([
     {
       path: '/',
@@ -50,8 +51,6 @@ const router =  createBrowserRouter ([
     element: <PinjamBukuPage />,
     }
   ])
-
-Modal.setAppElement('#root');
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
