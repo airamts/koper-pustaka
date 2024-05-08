@@ -17,7 +17,7 @@ const Features = () => {
                 <Row>
                     <Col className='d-flex'>
                         <Image src={bookIco} alt='Posting Review Bukumu' className='pencilIcon'/>
-                        <p className='keterangan'>Posting Review Bukumu</p>
+                        <p className='keterangan'>Aktifkan Koleksi Bukumu</p>
                     </Col>
                 </Row>
             </Container>
