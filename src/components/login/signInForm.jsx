@@ -22,11 +22,14 @@ const SignInForm = () => {
         },
         onSubmit: registerUser,
         validationSchema: yup.object().shape({
-            username: yup.string().required().min(3).max(10),
-            email: yup.string().required().email(),
-            password: yup.string().required().matches(
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-                "Kata sandi harus ada huruf besar, huruf kecil, angka, dan karakter spesial"
+            username: yup.string().required("Username diperlukan").min(3, 'Paling tidak mengandung 3 karakter').max(10, 'Maksimal mengandung 10 karakter'),
+            email: yup.string().required("Email diperlukan").email("Harus berupa email yang valid"),
+            password: yup.string().required("Password diperlukan")
+                .matches(/[a-z]/, 'Password harus mengandung huruf kecil')
+                .matches(/[A-Z]/, 'Password harus mengandung huruf besar')
+                .matches(/[0-9]/, 'Password harus mengandung angka')
+                .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Password harus mengandung karakter spesial')
+                .min(8, 'Panjang password minimal 8 karakter'
             ),
         }),
     });
@@ -56,7 +59,7 @@ const SignInForm = () => {
                 <Form.Control type="password" placeholder="Masukkan kata sandi kamu" onChange={handleForm} onBlur={formik.handleBlur} name='password' isInvalid={formik.touched.password && formik.errors.password} />
                 <Form.Control.Feedback type="invalid">{formik.errors.password}</Form.Control.Feedback>
             </Form.Group>
-            
+
             <Form.Group className='forgetPass'>
                 <Link to="/forgotPassword">
                     <p className='linkTo'>Lupa kata sandi?</p>

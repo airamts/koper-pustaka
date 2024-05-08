@@ -21,7 +21,7 @@ const ForgotPasswordForm = () => {
         },
         onSubmit: forgotPasswordUser,
         validationSchema: yup.object().shape({
-            email: yup.string().required().email(),
+            email: yup.string().required("Email tidak boleh kosong").email("Harus berupa email yang valid"),
         }),
     })
 

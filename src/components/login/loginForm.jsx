@@ -1,20 +1,20 @@
-import { Form, Button, Image, InputGroup } from 'react-bootstrap';
+import { Form, Button, Image, Modal } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import logoImage from "/assets/Logo/Logo.svg";
 import googleLogo from "/assets/Logo/Google Logo.svg";
+import bacaBuku from "/assets/Illustration/bacaBuku.svg"
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useState } from 'react';
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+
+    const handleCloseModal = () => setShowModal(false);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
-    }
-
-    const loginUser = () => {
-        window.location.href = '/homeLog';
     }
 
     const formik = useFormik ({
@@ -22,12 +22,18 @@ const LoginForm = () => {
             email: "",
             password: ""
         },
-        onSubmit: loginUser,
+        onSubmit: (values) => {
+            setShowModal(true);
+            console.log("Form submitted with values:", values);
+        },
         validationSchema: yup.object().shape({
-            email: yup.string().required().email(),
-            password: yup.string().required().matches(
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-                "Kata sandi harus ada huruf besar, huruf kecil, angka, dan karakter spesial"
+            email: yup.string().required("Email diperlukan").email("Harus berupa email yang valid"),
+            password: yup.string().required("Password diperlukan")
+                .matches(/[a-z]/, 'Password harus mengandung huruf kecil')
+                .matches(/[A-Z]/, 'Password harus mengandung huruf besar')
+                .matches(/[0-9]/, 'Password harus mengandung angka')
+                .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Password harus mengandung karakter spesial')
+                .min(8, 'Panjang password minimal 8 karakter'
             ),
         }),
     })
@@ -60,6 +66,23 @@ const LoginForm = () => {
             </Form.Group>
 
             <Button variant="dark" type="submit">Masuk</Button>
+
+            <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Kamu berhasil Login!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Image src={bacaBuku} alt="OTP Image" />
+                    <p>Selamat mengeksplor buku dan ilmu baru 😆</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Link to="/homeLog">
+                        <Button variant="primary" style={{ backgroundColor: "#71CC9B", border: "1px #71CC9B" }}>
+                            Lanjutkan
+                        </Button>
+                    </Link>
+                </Modal.Footer>
+            </Modal>
 
             <Form.Group className='otherMethod'>
                 <Form.Label>---------------------- atau ----------------------</Form.Label>
