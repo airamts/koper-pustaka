@@ -1,17 +1,17 @@
 import { Row, Col } from 'react-bootstrap';
-import LoginForm from '../components/login/loginForm';
+import ChangePasswordForm from '../components/login/changePasswordForm';
 import CarouselLogin from '../components/login/carousel';
 import "../styles/login.css"
 
-function Login() {
+function ChangePassword() {
     return (
         <div className='containerLogin'>
             <Row className='containerRow'>
                 <Col><CarouselLogin /></Col>
-                <Col><LoginForm /></Col>
+                <Col><ChangePasswordForm /></Col>
             </Row>
         </div>
     )
 }
 
-export default Login
+export default ChangePassword
