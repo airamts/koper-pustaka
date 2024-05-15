@@ -1,4 +1,5 @@
-import { Col, Button } from "react-bootstrap"
+import { Button } from "react-bootstrap"
+import { Link } from "react-router-dom";
 
 const VerfificationNotif = () => {
     return (
@@ -8,7 +9,7 @@ const VerfificationNotif = () => {
                     Akunmu belum terverifikasi nih! Klik tombol berikut untuk melakukan verifikasi
                 </div>
                 <div className="verifBtnContainer">
-                    <Button variant="outline-success" className="verifBtn">Verifikasi</Button>
+                    <Link to='/datadiri'><Button variant="outline-success" className="verifBtn">Verifikasi</Button></Link>
                 </div>
             </div>
         </div>
