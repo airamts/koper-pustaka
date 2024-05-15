@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Navbar, Container, Nav, Image, Form, Popover, Toast } from "react-bootstrap";
+import { Navbar, Container, Nav, Image, Button, Popover, Toast } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import logoImage from "/assets/Logo/Logo.svg";
 import searchIcon from "/assets/Icon/ic_round-search.svg";
 import profil from "/assets/Illustration/Profil.svg";
-import bacaBuku from "/assets/Illustration/bacaBuku.svg";
+import maintain from "/assets/Illustration/maintain.svg";
 
 const NavigationBarLog = () => {
     const [showPopover, setShowPopover] = useState(false);
@@ -30,7 +30,7 @@ const NavigationBarLog = () => {
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
-                            <Nav.Link as={Link} to="/homeLog">Beranda</Nav.Link>
+                            <Nav.Link as={Link} to="/homeLog" className="active">Beranda</Nav.Link>
                             <Nav.Link as={Link} to="/homeLog" onClick={handleNavClick}>Riwayat</Nav.Link>
                             <Nav.Link as={Link} to="/homeLog" onClick={handleNavClick}>Pesan</Nav.Link>
                             <Nav.Link as={Link} to="/homeLog" onClick={handleNavClick}>Koleksi Buku</Nav.Link>
@@ -38,23 +38,20 @@ const NavigationBarLog = () => {
                         <Navbar.Brand href="/" className="d-flex align-items-center justify-content-center flex-grow-1">
                             <Image src={logoImage} alt="Logo Koper Pustaka" className="logoKorpusLandingPage" />
                         </Navbar.Brand>
-                        <Form className="d-flex searchBar">
-                            <Image src={searchIcon} alt="Search Icon" className="searchIco" />
-                            <Form.Control
-                                type="search"
-                                placeholder="Cari buku"
-                                className="me-2 searchContent"
-                                aria-label="Search"
-                            />
-                        </Form>
+                        <Link to="/jelajah">
+                            <Button variant="outline-success" className="searchBtn">
+                                <Image className="searchBtnImg" src={searchIcon}/>
+                                Cari Buku
+                            </Button>
+                        </Link>
                         <div className="profil-container" onClick={togglePopover}>
                             <Image src={profil} alt="Profil" className="profil" />
                             {showPopover && (
-                                <Popover id="popover-basic">
+                                <Popover className="popover-basic">
                                     <Popover.Body>
-                                        <Link to="/profil" onClick={togglePopover}>Lihat Profil</Link>
+                                        <Link onClick={handleNavClick} className="lihat-profil">Lihat Profil</Link>
                                         <br />
-                                        <Link to="/logout" onClick={togglePopover}>Log Out</Link>
+                                        <Link to="/login" onClick={togglePopover} className="logout">Log Out</Link>
                                     </Popover.Body>
                                 </Popover>
                             )}
@@ -67,7 +64,7 @@ const NavigationBarLog = () => {
                 <Toast.Header>
                     <strong className="me-auto">Pengumuman!</strong>
                     <img
-                        src={bacaBuku}
+                        src={maintain}
                         className="rounded me-2"
                         alt=""
                     />
