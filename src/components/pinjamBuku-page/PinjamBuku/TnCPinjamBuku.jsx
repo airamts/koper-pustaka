@@ -1,7 +1,7 @@
 import React from "react";
 import TnCPinjamItem from "./TnCPinjamItem";
 
-function TnCPinjamBuku() {
+function TnCPinjamBuku({isChecked}) {
   return (
     <div className="TnC-pinjam__buku d-flex flex-column gap-4">
       <h5 className="mb-0 fw-bold">
@@ -17,7 +17,7 @@ function TnCPinjamBuku() {
       />
       <div className="d-flex flex-column gap-2">
         <label className="d-flex gap-2 checkbox-label align-items-center">
-          <input type="checkbox" />
+          <input type="checkbox" onChange={isChecked}/>
           Saya sudah membaca <strong>Syarat dan Ketentuan</strong> yang berlaku
         </label>
       </div>
