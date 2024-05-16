@@ -6,6 +6,12 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useState } from 'react';
 
+import { signInWithEmailAndPassword } from 'firebase/auth/web-extension';
+import { auth } from '../../firebase-config';
+
+import { GoogleAuthProvider } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
+
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -13,9 +19,29 @@ const LoginForm = () => {
         setShowPassword(!showPassword);
     }
 
-    const loginUser = () => {
-        window.location.href = '/homeLog';
-    }
+    const loginUser = async (values) => {
+        try{
+            await signInWithEmailAndPassword(auth, values.email, values.password);
+            console.log("login successfully")
+            window.location.href = '/homeLog';
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+    const signInWithGoogle = async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+          const result = await signInWithPopup(auth, provider);
+          const user = result.user;
+          console.log(user);
+          console.log("login successfully")
+          window.location.href = '/homeLog';
+        } catch (error) {
+          console.error(error.message);
+        }
+      };
+
 
     const formik = useFormik ({
         initialValues: {
@@ -66,7 +92,7 @@ const LoginForm = () => {
             </Form.Group>
 
             <Form.Group className='loginViaGoogle'>
-                <Link>
+                <Link onClick={signInWithGoogle}>
                     <Image src={googleLogo} alt="Google Logo" className="text-black googleLogo" />
                     <p className='linkTo'>Masuk dengan Google</p>
                 </Link>
