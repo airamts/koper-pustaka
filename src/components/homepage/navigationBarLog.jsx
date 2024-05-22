@@ -20,7 +20,7 @@ const NavigationBarLog = () => {
     };
 
     return (
-        <div>
+        <div style={{top: "0", position: "sticky", zIndex: "9999"}}>
             <Navbar expand="lg" className="bg-body-tertiary navigationBar">
                 <Container fluid>
                     <Navbar.Toggle aria-controls="navbarScroll" />
@@ -33,7 +33,7 @@ const NavigationBarLog = () => {
                             <Nav.Link as={Link} to="/homeLog" className="active">Beranda</Nav.Link>
                             <Nav.Link as={Link} to="/homeLog" onClick={handleNavClick}>Riwayat</Nav.Link>
                             <Nav.Link as={Link} to="/homeLog" onClick={handleNavClick}>Pesan</Nav.Link>
-                            <Nav.Link as={Link} to="/homeLog" onClick={handleNavClick}>Koleksi Buku</Nav.Link>
+                            <Nav.Link as={Link} to="/jelajah" onClick={handleNavClick}>Koleksi Buku</Nav.Link>
                         </Nav>
                         <Navbar.Brand href="/" className="d-flex align-items-center justify-content-center flex-grow-1">
                             <Image src={logoImage} alt="Logo Koper Pustaka" className="logoKorpusLandingPage" />
