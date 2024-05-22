@@ -1,7 +1,7 @@
 import React from "react";
 import DetailFormTitle from "./DetailFormTitle";
 
-function DetailBukuForm({ image, title, pinjamDate, durationInMonths }) {
+function DetailBukuForm({ image, title, pinjamDate, durationInMonths, endDate }) {
   return (
     <div className="detail-form d-flex flex-column gap-3 col-12 col-lg-6 col-xl-6">
       <h5 className="mb-0 fw-bold">
@@ -12,6 +12,7 @@ function DetailBukuForm({ image, title, pinjamDate, durationInMonths }) {
         <div className="detail-form__body d-flex flex-column gap-2">
           <DetailFormTitle type="Buku yang dipinjam:" fill={title} />
           <DetailFormTitle type="Tanggal Peminjaman:" fill={pinjamDate} />
+          <DetailFormTitle type="Akhir Peminjaman:" fill={endDate} />
           <DetailFormTitle type="Durasi Peminjaman:" fill={durationInMonths} />
         </div>
       </div>

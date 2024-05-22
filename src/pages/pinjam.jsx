@@ -7,6 +7,11 @@ const PinjamBukuPage = () => {
   const { title } = useParams();
   const bookInfo = getBookData().find((book) => book.title === title);
 
+  const handlePinjamBuku = (updatedBook) => {
+    // Menangani pembaruan status buku di backend atau state lokal
+    console.log("Buku berhasil dipinjam:", updatedBook);
+  };
+
   if (!bookInfo) {
     return <div>Buku tidak ditemukan</div>;
   }
@@ -19,6 +24,8 @@ const PinjamBukuPage = () => {
       id={id}
       image={image}
       durationInMonths={durationInMonths}
+      book={bookInfo}
+      onPinjamBuku={handlePinjamBuku}
     />
   );
 };
