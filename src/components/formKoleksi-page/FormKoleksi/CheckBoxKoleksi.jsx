@@ -23,6 +23,7 @@ function CheckboxKoleksi() {
           label="Ambil Sendiri"
           value="Ambil Sendiri"
           onChange={handleChange}
+          disabled
         />
         <Form.Check 
           type="checkbox" 
@@ -37,6 +38,7 @@ function CheckboxKoleksi() {
           label="Jasa Kirim COD"
           value="Jasa Kirim COD"
           onChange={handleChange}
+          disabled
         />
       </div>
     </Form>
