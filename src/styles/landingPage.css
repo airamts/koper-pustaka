@@ -4,18 +4,30 @@
 
 /* Navbar */
 .navigationBar {
+    width: 100%;
     display: flex;
     padding: 24px 80px;
     justify-content: space-between;
     align-items: center;
     background: var(--White, #FFF);
     box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.05);
+    z-index: 999;
 }
 
 .loginBtn {
     border-radius: 16px;
     background: var(--Primary, #71CC9B);
     color: var(--White, #FFF);
+}
+
+.searchBtn {
+    margin-right: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.searchBtn:hover .searchBtnImg {
+    filter: invert(100%) brightness(1000%);
 }
 
 .logoKorpusLandingPage {
@@ -45,12 +57,61 @@
     position: relative;
 }
 
+.popover-basic {
+    position: fixed;
+}
+
+.lihat-profil {
+    color: #71CC9B;
+    text-decoration: none;
+}
+
+.logout {
+    color: red;
+    text-decoration: none;
+}
+
 .profil-popover {
     position: absolute;
     top: 100%;
     right: 0;
     z-index: 999;
     color: black;
+}
+
+.divContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.mustVerifContainer {
+    display: flex;
+    background-color: var(--White, #FFF);
+    width: 90%; 
+    max-width: 1320px; 
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0px;
+    border-radius: 20px;
+    flex-wrap: wrap; 
+}
+
+.mustVerif {
+    padding-right: 20px;
+    flex: 1;
+    min-width: 250px; 
+}
+
+.verifBtnContainer {
+    flex: 0 0 auto; 
+}
+
+@media (max-width: 768px) {
+    
 }
 
 /* Intro */
@@ -208,8 +269,8 @@
 /* Toast */
 .custom-toast {
     position: fixed;
-    left: 40%;
-    top: 30%;
+    left: 48%;
+    top: 37%;
     transform: translate(-50%, -50%);
     z-index: 9999;
     width: 300px;
@@ -239,9 +300,30 @@
     margin-bottom: 0.5rem;
 }
 
+.custom-toast .me-auto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.me-2 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 @media only screen and (max-width: 772px) {
     .tagLine {
         font-size: 54px;
+    }
+    .mustVerifContainer {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center; 
+    }
+    .mustVerif {
+        padding-right: 0;
+        margin-bottom: 20px; 
     }
 }
   

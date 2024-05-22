@@ -1,4 +1,5 @@
 import NavigationBarLog from '../components/homepage/navigationBarLog';
+import VerfificationNotif from '../components/homepage/verificationNotif';
 import Intro from '../components/homepage/intro';
 import Features from '../components/homepage/features';
 import RecentActivityLog from '../components/homepage/recentActivityLog';
@@ -12,6 +13,10 @@ const homeLog = () => {
         <div>
             <div id='navbar'>
                 <NavigationBarLog />
+            </div>
+
+            <div id='verifNotif'>
+                <VerfificationNotif />
             </div>
 
             <div id='intro'>
