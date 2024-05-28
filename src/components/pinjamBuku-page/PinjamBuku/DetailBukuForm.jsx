@@ -13,7 +13,7 @@ function DetailBukuForm({ image, title, pinjamDate, durationInMonths, endDate })
           <DetailFormTitle type="Buku yang dipinjam:" fill={title} />
           <DetailFormTitle type="Tanggal Peminjaman:" fill={pinjamDate} />
           <DetailFormTitle type="Akhir Peminjaman:" fill={endDate} />
-          <DetailFormTitle type="Durasi Peminjaman:" fill={durationInMonths} />
+          <DetailFormTitle type="Durasi Peminjaman:" fill={`${durationInMonths} bulan`} />
         </div>
       </div>
     </div>

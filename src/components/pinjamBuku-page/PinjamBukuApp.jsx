@@ -9,6 +9,7 @@ import TnCPinjamBuku from "./PinjamBuku/TnCPinjamBuku";
 import ButtonLanjutkan from "./PinjamBuku/ButtonLanjutkan";
 import NotifySuccessful from "./PinjamBuku/NotifySuccessful";
 import ButtonBackBeranda from "./PinjamBuku/ButtonBackBeranda";
+import { incrementBookQueue } from "../../utils/bookUtils";
 
 class PinjamBukuApp extends React.Component {
   constructor(props) {
@@ -75,19 +76,13 @@ class PinjamBukuApp extends React.Component {
   handlePinjamBuku() {
     const { book } = this.state;
     if (book) {
-      this.setState(
-        (prevState) => ({
-          book: {
-            ...prevState.book,
-            antrian: prevState.book.antrian + 1,
-          },
-        }),
-        () => {
-          if (this.props.onPinjamBuku) {
-            this.props.onPinjamBuku(this.state.book);
-          }
-        }
-      );
+      incrementBookQueue(book.id);
+      if (this.props.onPinjamBuku) {
+        this.props.onPinjamBuku({
+          ...book,
+          antrian: book.antrian + 1,
+        });
+      }
     }
   }
 

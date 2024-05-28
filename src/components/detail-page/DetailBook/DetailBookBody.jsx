@@ -30,7 +30,7 @@ function DetailBookBody({
         <DetailBookFooter
           icon="/images/icon-durasi.svg"
           type="Durasi Pinjam:"
-          fill={durationInMonths}
+          fill={`${durationInMonths} bulan`}
         />
         <DetailBookFooter
           icon="/images/icon-peminjam.svg"
@@ -40,7 +40,7 @@ function DetailBookBody({
         <DetailBookFooter
           icon="/images/icon-antrian.svg"
           type="Antrian:"
-          fill={antrian}
+          fill={`${antrian} orang`}
         />
         <DetailBookFooter
           icon="/images/icon-lokasi.svg"

@@ -19,15 +19,31 @@ class DetailBukuApp extends React.Component {
   }
 
   componentDidMount() {
+    this.loadBookData();
+  }
+
+  loadBookData = () => {
     const { match } = this.props;
     const { params } = match || {};
     const { title } = params || {};
 
-    const book = getBookData().find(
-      (book) => book.title && book.title === title
-    );
+    let book = null;
 
-    if (book) {
+    const storedBookData = localStorage.getItem("books");
+    if (storedBookData) {
+      const bookData = JSON.parse(storedBookData);
+      book = bookData.find((book) => book.title && book.title === title);
+    }
+
+    if (!book) {
+      const bookFromData = getBookData().find(
+        (book) => book.title && book.title === title
+      );
+      if (bookFromData) {
+        this.setState({ book: bookFromData });
+        localStorage.setItem("books", JSON.stringify(getBookData()));
+      }
+    } else {
       this.setState({ book });
     }
   }
@@ -40,6 +56,17 @@ class DetailBukuApp extends React.Component {
     this.reviewBookRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  handleUpdateQueue = (newQueue) => {
+    const updatedBook = { ...this.state.book, antrian: newQueue };
+  
+    const storedBookData = JSON.parse(localStorage.getItem("books"));
+    const updatedBookData = storedBookData.map((book) =>
+      book.id === updatedBook.id ? updatedBook : book
+    );
+    localStorage.setItem("books", JSON.stringify(updatedBookData));
+  
+    this.setState({ book: updatedBook }, this.loadBookData);
+  };
 
   render() {
     const { book } = this.state;
@@ -82,6 +109,7 @@ class DetailBukuApp extends React.Component {
             image={book.image}
             avatar={book.avatar}
             title={book.title}
+            handleUpdateQueue={this.handleUpdateQueue}
           />
           <div className="book-detail__desc-review d-flex flex-column">
             <DetailBookTab
