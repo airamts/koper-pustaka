@@ -22,12 +22,13 @@ const ChangePasswordForm = () => {
         },
         onSubmit: forgotPasswordUser,
         validationSchema: yup.object().shape({
-            password: yup.string()
-                .required("Password diperlukan")
-                .matches(
-                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-                    "Kata sandi harus ada huruf besar, huruf kecil, angka, dan karakter spesial"
-                ),
+            password: yup.string().required("Password diperlukan")
+                .matches(/[a-z]/, 'Password harus mengandung huruf kecil')
+                .matches(/[A-Z]/, 'Password harus mengandung huruf besar')
+                .matches(/[0-9]/, 'Password harus mengandung angka')
+                .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Password harus mengandung karakter spesial')
+                .min(8, 'Panjang password minimal 8 karakter'
+            ),
             confirmPassword: yup.string()
                 .required("Konfirmasi password diperlukan")
                 .oneOf([yup.ref('password'), null], 'Kedua password harus sama')

@@ -9,9 +9,14 @@ import HomeLog from './pages/homeLog';
 import JelajahPage from "./pages/jelajah";
 import DetailPage from "./pages/detail";
 import PinjamBukuPage from "./pages/pinjam";
+import FormKoleksiPage from "./pages/FormKoleksi";
+import DataDiriPage from "./pages/Datadiri";
+import AlamatPage from "./pages/Alamat";
+import IdentitasPage from "./pages/Identitas";
 import Modal from "react-modal";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+Modal.setAppElement('#root');
 const router =  createBrowserRouter ([
     {
       path: '/',
@@ -48,8 +53,24 @@ const router =  createBrowserRouter ([
     {
     path: "/book/:title/:id/pinjam",
     element: <PinjamBukuPage />,
+    },
+    {
+    path: "/datadiri",
+    element: <DataDiriPage />,
+    },
+    {
+    path: "/Alamat",
+    element: <AlamatPage />,
+    },
+    {
+    path: "/identitas",
+    element: <IdentitasPage />,
+    },
+    {
+    path: "/formkoleksi",
+    element: <FormKoleksiPage />,
     }
-  ])
+]);
 
 Modal.setAppElement('#root');
 
