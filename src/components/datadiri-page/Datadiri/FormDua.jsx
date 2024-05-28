@@ -5,20 +5,24 @@ import { useFormData } from './FormulirValidation';
 function FormDuaDatadiri() {
   const [gender, setGender] = useState('');
   const [job, setJob] = useState('');
-  const { setFormValid } = useFormData();
+  const { setFormDua } = useFormData();
 
   const handleGenderChange = (event) => {
     setGender(event.target.value);
   };
 
   const handleJobChange = (event) => {
-    setJob(event.target.value);
+    const value = event.target.value;
+    const regex = /^[a-zA-Z\s]*$/; 
+    if (regex.test(value)) {
+      setJob(value);
+    }
   };
 
   // Efek untuk memeriksa validitas input
   useEffect(() => {
-    setFormValid(gender && job);
-  }, [gender, job, setFormValid]);
+    setFormDua(gender && job);
+  }, [gender, job, setFormDua]);
 
   return (
     <Form>

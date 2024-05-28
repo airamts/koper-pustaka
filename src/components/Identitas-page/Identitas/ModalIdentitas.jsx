@@ -25,6 +25,7 @@ function ModalIdentitas(props) {
       onHide={props.onHide}
       size="md"
       aria-labelledby="contained-modal-body-vcenter"
+      backdrop="static"
       centered>
       <Modal.Body style={centeredStyle}>
         <Image src="/images/PopUpidentitas.svg" style={{ marginBottom: '20px', maxWidth: '100%' }}/>

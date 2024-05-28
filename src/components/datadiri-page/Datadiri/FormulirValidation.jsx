@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const FormDataContext = createContext();
 
@@ -7,10 +7,26 @@ export function useFormData() {
 }
 
 export const FormDataProvider = ({ children }) => {
+
+  const [formSatu, setFormSatu] = useState(false);
+  const [formDua, setFormDua] = useState(false);
+
   const [isFormValid, setFormValid] = useState(false);
 
+  useEffect(() => {
+    if (formSatu && formDua) {
+      setFormValid(true);
+    } else {
+      setFormValid(false);
+    }
+  }, [formSatu, formDua]);
+
+
   return (
-    <FormDataContext.Provider value={{ isFormValid, setFormValid }}>
+    <FormDataContext.Provider value={{ 
+      setFormSatu,
+      setFormDua,
+      isFormValid }}>
       {children}
     </FormDataContext.Provider>
   );
