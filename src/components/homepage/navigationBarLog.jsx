@@ -20,7 +20,7 @@ const NavigationBarLog = () => {
     };
 
     return (
-        <div style={{top: "0", position: "sticky", zIndex: "9999"}}>
+        <div style={{ top: "0", position: "sticky", zIndex: "9999" }}>
             <Navbar expand="lg" className="bg-body-tertiary navigationBar">
                 <Container fluid>
                     <Navbar.Toggle aria-controls="navbarScroll" />
@@ -40,7 +40,7 @@ const NavigationBarLog = () => {
                         </Navbar.Brand>
                         <Link to="/jelajah">
                             <Button variant="outline-success" className="searchBtn">
-                                <Image className="searchBtnImg" src={searchIcon}/>
+                                <Image className="searchBtnImg" src={searchIcon} />
                                 Cari Buku
                             </Button>
                         </Link>
@@ -60,7 +60,7 @@ const NavigationBarLog = () => {
                 </Container>
             </Navbar>
 
-            <Toast show={showA} onClose={toggleShowA} className="custom-toast">
+            <Toast show={showA} className="custom-toast">
                 <Toast.Header>
                     <strong className="me-auto">Pengumuman!</strong>
                     <img
@@ -68,6 +68,9 @@ const NavigationBarLog = () => {
                         className="rounded me-2"
                         alt=""
                     />
+                    <button type="button" className="close" aria-label="Close" onClick={toggleShowA}>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </Toast.Header>
                 <Toast.Body>Maaf halaman ini sedang dalam tahap development 👷‍♂️</Toast.Body>
             </Toast>
