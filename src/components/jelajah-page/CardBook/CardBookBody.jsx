@@ -24,7 +24,7 @@ function CardBookBody({
         <div className="card-body__footer d-flex w-100 justify-content-between">
           <CardBookFooter type="Penulis" fill={author} />
           <CardBookFooter type="Pemilik" fill={owner} />
-          <CardBookFooter type="Durasi" fill={durationInMonths} />
+          <CardBookFooter type="Durasi" fill={`${durationInMonths} bulan`} />
         </div>
       </div>
     </div>

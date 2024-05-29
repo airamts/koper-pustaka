@@ -381,7 +381,7 @@ body {
 }
 
 .pinjam-button:disabled {
-  background: #DADADA
+  background: #dadada;
 }
 
 .alasan-pinjam textarea::placeholder {

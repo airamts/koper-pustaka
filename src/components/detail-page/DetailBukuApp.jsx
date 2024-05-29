@@ -6,7 +6,6 @@ import DetailBookTab from "./DetailBook/DetailBookTab";
 import BookDescription from "./DetailBook/BookDescription";
 import DetailBookTag from "./DetailBook/DetailBookTag";
 import ReviewBookList from "./ReviewBook/ReviewBookList";
-import { getReviewBook } from "../../utils/dataReviewBuku";
 import { Link } from "react-router-dom";
 
 class DetailBukuApp extends React.Component {
@@ -14,22 +13,37 @@ class DetailBukuApp extends React.Component {
     super(props);
     this.state = {
       book: null,
-      reviews: getReviewBook(),
     };
     this.bookDescriptionRef = React.createRef();
     this.reviewBookRef = React.createRef();
   }
 
   componentDidMount() {
+    this.loadBookData();
+  }
+
+  loadBookData = () => {
     const { match } = this.props;
     const { params } = match || {};
     const { title } = params || {};
 
-    const book = getBookData().find(
-      (book) => book.title && book.title === title
-    );
+    let book = null;
 
-    if (book) {
+    const storedBookData = localStorage.getItem("books");
+    if (storedBookData) {
+      const bookData = JSON.parse(storedBookData);
+      book = bookData.find((book) => book.title && book.title === title);
+    }
+
+    if (!book) {
+      const bookFromData = getBookData().find(
+        (book) => book.title && book.title === title
+      );
+      if (bookFromData) {
+        this.setState({ book: bookFromData });
+        localStorage.setItem("books", JSON.stringify(getBookData()));
+      }
+    } else {
       this.setState({ book });
     }
   }
@@ -40,6 +54,18 @@ class DetailBukuApp extends React.Component {
 
   handleScrollToReview = () => {
     this.reviewBookRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  handleUpdateQueue = (newQueue) => {
+    const updatedBook = { ...this.state.book, antrian: newQueue };
+  
+    const storedBookData = JSON.parse(localStorage.getItem("books"));
+    const updatedBookData = storedBookData.map((book) =>
+      book.id === updatedBook.id ? updatedBook : book
+    );
+    localStorage.setItem("books", JSON.stringify(updatedBookData));
+  
+    this.setState({ book: updatedBook }, this.loadBookData);
   };
 
   render() {
@@ -57,20 +83,25 @@ class DetailBukuApp extends React.Component {
     return (
       <div className="container d-flex flex-column gap-4 px-0">
         <Link to={`/jelajah`} style={{ textDecoration: "none" }}>
-        <button className="back-button d-flex align-items-center gap-2 my-4">
-          <img src="/images/arrow-left.svg" alt="arrow-left" />
-          <p className="mb-0">Kembali</p>
-        </button>
+          <button className="back-button d-flex align-items-center gap-2 my-4">
+            <img src="/images/arrow-left.svg" alt="arrow-left" />
+            <p className="mb-0">Kembali</p>
+          </button>
         </Link>
         <div className="detail-book d-flex flex-column justify-content-center gap-4">
           <h4 className="mb-4 text-start fw-bold fs-5">Detail Buku</h4>
-          <BookCarousel image={book.image} image2={book.image2} image3={book.image3}/>
+          <BookCarousel
+            image={book.image}
+            image2={book.image2}
+            image3={book.image3}
+          />
           <h4 className="mb-0 text-center fw-bold">{book.title}</h4>
           <DetailBookTag category={book.category} />
           <DetailBookBody
             author={book.author}
             durationInMonths={book.durationInMonths}
             peminjam={book.peminjam}
+            antrian={book.antrian}
             location={book.location}
             owner={book.owner}
             id={book.id}
@@ -78,6 +109,7 @@ class DetailBukuApp extends React.Component {
             image={book.image}
             avatar={book.avatar}
             title={book.title}
+            handleUpdateQueue={this.handleUpdateQueue}
           />
           <div className="book-detail__desc-review d-flex flex-column">
             <DetailBookTab
@@ -89,7 +121,7 @@ class DetailBukuApp extends React.Component {
             </div>
             <div className="mt-4" ref={this.reviewBookRef}>
               <p className="fs-6 fw-bold mb-2">Review Buku</p>
-              <ReviewBookList reviews={this.state.reviews} />
+              <ReviewBookList reviews={book.reviews} />
             </div>
           </div>
         </div>
