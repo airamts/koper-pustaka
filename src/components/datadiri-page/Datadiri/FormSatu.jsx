@@ -7,7 +7,7 @@ function FormSatuDatadiri() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [birthdate, setBirthdate] = useState('');
-  const { setFormSatu, setFormData } = useFormData();
+  const { setFormSatu, updateFormData } = useFormData();
 
   const handlePhoneNumberChange = (event) => {
     const value = event.target.value.replace(/\D/g, '');
@@ -26,8 +26,8 @@ function FormSatuDatadiri() {
 
   useEffect(() => {
     setFormSatu(phoneNumber && email && birthdate);
-    setFormData({phoneNumber, email, birthdate});
-  }, [phoneNumber, email, birthdate, setFormSatu]);
+    updateFormData({phoneNumber, email, birthdate});
+  }, [phoneNumber, email, birthdate, setFormSatu, updateFormData]);
 
   return (
     <Form>

@@ -5,7 +5,7 @@ import { useFormData } from './FormulirValidation';
 function FormDuaDatadiri() {
   const [gender, setGender] = useState('');
   const [job, setJob] = useState('');
-  const { setFormDua } = useFormData();
+  const { setFormDua, updateFormData } = useFormData();
 
   const handleGenderChange = (event) => {
     setGender(event.target.value);
@@ -22,7 +22,8 @@ function FormDuaDatadiri() {
   // Efek untuk memeriksa validitas input
   useEffect(() => {
     setFormDua(gender && job);
-  }, [gender, job, setFormDua]);
+    updateFormData({gender, job});
+  }, [gender, job, setFormDua, updateFormData]);
 
   return (
     <Form>

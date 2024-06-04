@@ -21,6 +21,12 @@ export const FormDataProvider = ({ children }) => {
     }
   }, [formSatu, formDua]);
 
+  const updateFormData = (newData) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      ...newData
+    }));
+  };
 
   return (
     <FormDataContext.Provider value={{ 
@@ -28,7 +34,7 @@ export const FormDataProvider = ({ children }) => {
       setFormDua,
       isFormValid,
       formData,
-      setFormData }}>
+      updateFormData }}>
       {children}
     </FormDataContext.Provider>
   );

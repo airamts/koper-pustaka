@@ -18,9 +18,9 @@ function GenreOption() {
           onChange={handleSelectChange}
         >
           <option key='blankChoice' hidden value />
-          <option value="1">Romance</option>
-          <option value="2">History</option>
-          <option value="3">Animasi</option>
+          <option value="1">Romance</option><hr></hr>
+          <option value="2">History</option><hr></hr>
+          <option value="3">Animasi</option><hr></hr>
           <option value="4">Adventure</option>
         </Form.Select>
       </Form.Group>

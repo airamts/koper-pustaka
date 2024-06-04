@@ -25,6 +25,7 @@ function ModalKoleksi(props) {
       onHide={props.onHide}
       size="md"
       aria-labelledby="contained-modal-body-vcenter"
+      backdrop="static"
       centered>
       <Modal.Body style={centeredStyle}>
         <Image src="/images/PopUpForm Koleksi.svg" style={{ marginBottom: '20px', maxWidth: '100%' }}/>

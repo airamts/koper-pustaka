@@ -13,7 +13,7 @@ function ButtonDatadiri() {
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
-  const handeSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (isFormValid) {
       try {
@@ -38,17 +38,17 @@ function ButtonDatadiri() {
   }, [showError]);
 
   return (
-    <div 
-    className="d-grid gap-2">
-      <Button onClick={handeSubmit}
-        className='fw-bolder mb-4' 
-        variant="success" 
+    <div className="d-grid gap-2">
+      <Button
+        onClick={handleSubmit}
+        className='fw-bolder'
+        variant="success"
         size="md"
         >
         Simpan dan Lanjutkan
       </Button>
       {showError && !isFormValid && (
-        <div 
+        <div
           className='fw-light fst-italic'
           style={{ color: 'black', marginTop: '1px' }}>
           *Semua field harus diisi sebelum melanjutkan.

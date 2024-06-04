@@ -1,33 +1,46 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import { useFormKoleksi } from './FormulirValidasiKoleksi';
 
 function DateDeskInput() {
-  const { setDateAndDescriptionFilled } = useFormKoleksi();
-  const [tanggalPinjam, setTanggalPinjam] = useState('');
+  const { setDateAndDescriptionFilled, setPinjamBukuSelected } = useFormKoleksi();
+  const [durasiPinjam, setDurasiPinjam] = useState('');
   const [deskripsiBuku, setDeskripsiBuku] = useState('');
 
-  const handleChange = () => {
-    setDateAndDescriptionFilled(tanggalPinjam.trim() !== '' && deskripsiBuku.trim() !== '');
+  useEffect(() => {
+    const allFilled = durasiPinjam !== '' && deskripsiBuku.trim() !== '';
+    setDateAndDescriptionFilled(allFilled);
+  }, [durasiPinjam, deskripsiBuku, setDateAndDescriptionFilled]);
+
+  const handleSelectChange = (event) => {
+    const value = event.target.value;
+    setDurasiPinjam(value);
+    setPinjamBukuSelected(value !== '');
   };
 
   const handleDescriptionChange = (e) => {
-    if (e.target.value.length <= 300) { // Ensure the length is <= 300
+    if (e.target.value.length <= 300) {
       setDeskripsiBuku(e.target.value);
-      handleChange();
     }
   };
 
   return (
     <Form>
-      <Form.Group className="mb-3" controlId="dateInput">
-        <Form.Label className='fw-bolder mb-1'>Waktu Pinjam Buku</Form.Label>
-        <Form.Control
-          className='fst-italic fw-light'
-          type="date"
-          value={tanggalPinjam}
-          onChange={(e) => { setTanggalPinjam(e.target.value); handleChange(); }}
-        />
+      <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
+        <Form.Label className='mb-1 fw-bolder'>Waktu Pinjam Buku</Form.Label>
+        <Form.Select
+          aria-label="Default select example"
+          onChange={handleSelectChange}
+          value={durasiPinjam}
+        >
+          <option key='blankChoice' hidden value="" />
+          <option value="1">1 Bulan</option><hr></hr>
+          <option value="2">2 Bulan</option><hr></hr>
+          <option value="3">3 Bulan</option><hr></hr>
+          <option value="4">4 Bulan</option><hr></hr>
+          <option value="5">5 Bulan</option><hr></hr>
+          <option value="6">6 Bulan</option>
+        </Form.Select>
       </Form.Group>
       <Form.Group className="mb-3" controlId="deskripsiInput">
         <Form.Label className='fw-bolder'>Deskripsi Buku</Form.Label>

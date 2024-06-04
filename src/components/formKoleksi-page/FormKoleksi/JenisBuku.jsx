@@ -16,10 +16,10 @@ function JenisBukuOption() {
         <Form.Select
           className=''
           aria-label="Default select example"
-          onChange={handleSelectChange}
-        >
+          onChange={handleSelectChange}>
           <option key='blankChoice' hidden value />
           <option value="1">Full-Berantai</option>
+          <hr></hr>
           <option value="2">Non Full-Berantai</option>
         </Form.Select>
       </Form.Group>
