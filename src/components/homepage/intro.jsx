@@ -1,6 +1,35 @@
+import React, { useRef, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Intro = () => {
+    const buttonRef = useRef(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleButtonClick = (e) => {
+            e.preventDefault();  
+            window.scrollTo({
+                top: 0,  
+                behavior: 'smooth'
+            });
+            setTimeout(() => {
+                navigate('/formkoleksi');
+            }, 0);  
+        };
+
+        const button = buttonRef.current;
+        if (button) {
+            button.addEventListener('click', handleButtonClick);
+        }
+
+        return () => {
+            if (button) {
+                button.removeEventListener('click', handleButtonClick);
+            }
+        };
+    }, [navigate]);
+
     return (
         <div className='intro display-flex'>
             <Container>
@@ -15,11 +44,15 @@ const Intro = () => {
                     </Col>
                 </Row>
                 <Row className='justify-content-center'>
-                    <Button className='introBtn' variant="outline-success">Tambah Koleksi Bukumu</Button>
+                    <Col xs="auto">
+                        <Link to='/formkoleksi' ref={buttonRef}>
+                            <Button className='introBtn' variant="outline-success">Tambah Koleksi Bukumu</Button>
+                        </Link>
+                    </Col>
                 </Row>
             </Container>
         </div>
-    )
-}
+    );
+};
 
-export default Intro
+export default Intro;
