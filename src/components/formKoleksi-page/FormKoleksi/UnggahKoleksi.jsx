@@ -10,12 +10,12 @@ function UnggahKoleksi() {
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
-      const validExtensions = ['image/jpeg', 'image/jpg', 'image/png', 'video/mp4', 'video/mov', 'video/x-matroska', 'application/pdf'];
+      const validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
       if (validExtensions.includes(selectedFile.type)) {
         setFile(selectedFile);
         setFileUploaded(true);
       } else {
-        alert("File type not supported. Please select a file of type: JPEG, JPG, PNG, MP4, MOV, MKV, PDF.");
+        alert("File type not supported. Please select a file of type: JPEG, JPG, PNG.");
         setFileUploaded(false);
         setFile(null); // Jika file tidak valid, reset state file
       }
@@ -31,7 +31,7 @@ function UnggahKoleksi() {
             <input
               type="file"
               id="file-upload"
-              accept=".jpg, .jpeg, .png, .mp4, .mov, .mkv, .pdf"
+              accept=".jpg, .jpeg, .png"
               style={{ display: 'none' }}
               onChange={handleFileChange}
             />
@@ -39,7 +39,7 @@ function UnggahKoleksi() {
           {file && <div className="mt-2">
              {file.name}
           </div>}
-          <p className='fw-light fst-italic mt-2'>*Format yang disetujui yaitu: jpg, jpeg, png, mp4, mov, mkv, pdf</p>
+          <p className='fw-light fst-italic mt-2'>*Format yang disetujui yaitu: jpg, jpeg, png</p>
         </div>
       </div>
     </Form>

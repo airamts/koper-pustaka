@@ -9,6 +9,7 @@ import TnCPinjamBuku from "./PinjamBuku/TnCPinjamBuku";
 import ButtonLanjutkan from "./PinjamBuku/ButtonLanjutkan";
 import NotifySuccessful from "./PinjamBuku/NotifySuccessful";
 import ButtonBackBeranda from "./PinjamBuku/ButtonBackBeranda";
+import { incrementBookQueue } from "../../utils/bookUtils";
 
 class PinjamBukuApp extends React.Component {
   constructor(props) {
@@ -20,12 +21,14 @@ class PinjamBukuApp extends React.Component {
       isAlasanValid: true,
       isMetodeValid: true,
       selectedOption: "",
+      book: props.book,
     };
     this.onNextHandler = this.onNextHandler.bind(this);
     this.toggleNotify = this.toggleNotify.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleAlasanPinjamChange = this.handleAlasanPinjamChange.bind(this);
     this.handleMetodeChange = this.handleMetodeChange.bind(this);
+    this.handlePinjamBuku = this.handlePinjamBuku.bind(this);
   }
 
   onNextHandler(event) {
@@ -45,14 +48,9 @@ class PinjamBukuApp extends React.Component {
       this.setState({ isMetodeValid: true });
     }
 
-    console.log("onNextHandler called");
-    console.log("isAlasanValid:", this.state.isAlasanValid);
-    console.log("isMetodeValid:", this.state.isMetodeValid);
-
     if (this.state.isAlasanValid && this.state.isMetodeValid) {
-      console.log("Pinjam Buku Berhasil!", this.props);
+      this.handlePinjamBuku();
       this.toggleNotify();
-      console.log("show notify", this.state.showNotify);
     }
   }
 
@@ -75,8 +73,38 @@ class PinjamBukuApp extends React.Component {
     this.setState({ selectedOption, isMetodeValid: selectedOption !== "" });
   }
 
+  handlePinjamBuku() {
+    const { book } = this.state;
+    if (book) {
+      incrementBookQueue(book.id);
+      if (this.props.onPinjamBuku) {
+        this.props.onPinjamBuku({
+          ...book,
+          antrian: book.antrian + 1,
+        });
+      }
+    }
+  }
+
   render() {
     const { title, image, durationInMonths } = this.props;
+    
+    const months = [
+      "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+      "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+
+    const currentDate = new Date();
+
+    const formattedPinjamDate = currentDate.getDate() + " " + months[currentDate.getMonth()] + " " + currentDate.getFullYear();
+
+    const endDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + durationInMonths,
+      currentDate.getDate()
+    );
+
+    const formattedEndDate = endDate.getDate() + " " + months[endDate.getMonth()] + " " + endDate.getFullYear();
 
     return (
       <div className="container d-flex flex-column gap-4 my-4">
@@ -96,8 +124,9 @@ class PinjamBukuApp extends React.Component {
               <DetailBukuForm
                 title={title}
                 image={image}
-                pinjamDate={new Date().toLocaleDateString()}
+                pinjamDate={formattedPinjamDate}
                 durationInMonths={durationInMonths}
+                endDate={formattedEndDate}
               />
               <AlasanPinjamForm
                 alasanPinjam={this.state.alasanPinjam}

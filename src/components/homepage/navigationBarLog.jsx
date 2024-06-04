@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navbar, Container, Nav, Image, Button, Popover, Toast } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import logoImage from "/assets/Logo/Logo.svg";
 import searchIcon from "/assets/Icon/ic_round-search.svg";
@@ -10,17 +10,22 @@ import maintain from "/assets/Illustration/maintain.svg";
 const NavigationBarLog = () => {
     const [showPopover, setShowPopover] = useState(false);
     const [showA, setShowA] = useState(false);
+    const location = useLocation();
 
     const toggleShowA = () => setShowA(!showA);
     const togglePopover = () => setShowPopover(!showPopover);
 
-    const handleNavClick = () => {
-        setShowA(true);
-        toggleShowA();
+    const handleNavClick = (event, path) => {
+        event.preventDefault();
+        if (path === '/homeLog') {
+            window.location.href = path;
+        } else {
+            setShowA(true);
+        }
     };
 
     return (
-        <div style={{top: "0", position: "sticky", zIndex: "9999"}}>
+        <div style={{ top: "0", position: "sticky", zIndex: "9999" }}>
             <Navbar expand="lg" className="bg-body-tertiary navigationBar">
                 <Container fluid>
                     <Navbar.Toggle aria-controls="navbarScroll" />
@@ -30,17 +35,45 @@ const NavigationBarLog = () => {
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
-                            <Nav.Link as={Link} to="/homeLog" className="active">Beranda</Nav.Link>
-                            <Nav.Link as={Link} to="/homeLog" onClick={handleNavClick}>Riwayat</Nav.Link>
-                            <Nav.Link as={Link} to="/homeLog" onClick={handleNavClick}>Pesan</Nav.Link>
-                            <Nav.Link as={Link} to="/jelajah" onClick={handleNavClick}>Koleksi Buku</Nav.Link>
+                            <Nav.Link
+                                as={Link}
+                                to="/homeLog"
+                                className={location.pathname === '/homeLog' ? 'active' : ''}
+                                onClick={(e) => handleNavClick(e, '/homeLog')}
+                            >
+                                Beranda
+                            </Nav.Link>
+                            <Nav.Link
+                                as={Link}
+                                to="/riwayat"
+                                className=""
+                                onClick={(e) => handleNavClick(e, '/riwayat')}
+                            >
+                                Riwayat
+                            </Nav.Link>
+                            <Nav.Link
+                                as={Link}
+                                to="/pesan"
+                                className=""
+                                onClick={(e) => handleNavClick(e, '/pesan')}
+                            >
+                                Pesan
+                            </Nav.Link>
+                            <Nav.Link
+                                as={Link}
+                                to="/koleksiBuku"
+                                className=""
+                                onClick={(e) => handleNavClick(e, '/koleksiBuku')}
+                            >
+                                Koleksi Buku
+                            </Nav.Link>
                         </Nav>
                         <Navbar.Brand href="/" className="d-flex align-items-center justify-content-center flex-grow-1">
                             <Image src={logoImage} alt="Logo Koper Pustaka" className="logoKorpusLandingPage" />
                         </Navbar.Brand>
                         <Link to="/jelajah">
                             <Button variant="outline-success" className="searchBtn">
-                                <Image className="searchBtnImg" src={searchIcon}/>
+                                <Image className="searchBtnImg" src={searchIcon} />
                                 Cari Buku
                             </Button>
                         </Link>
@@ -49,7 +82,7 @@ const NavigationBarLog = () => {
                             {showPopover && (
                                 <Popover className="popover-basic">
                                     <Popover.Body>
-                                        <Link onClick={handleNavClick} className="lihat-profil">Lihat Profil</Link>
+                                        <Link onClick={togglePopover} className="lihat-profil">Lihat Profil</Link>
                                         <br />
                                         <Link to="/login" onClick={togglePopover} className="logout">Log Out</Link>
                                     </Popover.Body>
@@ -60,7 +93,7 @@ const NavigationBarLog = () => {
                 </Container>
             </Navbar>
 
-            <Toast show={showA} onClose={toggleShowA} className="custom-toast">
+            <Toast show={showA} className="custom-toast" onClose={toggleShowA} autohide delay={3000}>
                 <Toast.Header>
                     <strong className="me-auto">Pengumuman!</strong>
                     <img
@@ -68,6 +101,9 @@ const NavigationBarLog = () => {
                         className="rounded me-2"
                         alt=""
                     />
+                    <button type="button" className="close" aria-label="Close" onClick={toggleShowA}>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </Toast.Header>
                 <Toast.Body>Maaf halaman ini sedang dalam tahap development 👷‍♂️</Toast.Body>
             </Toast>
