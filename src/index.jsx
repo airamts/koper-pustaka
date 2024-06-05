@@ -15,6 +15,7 @@ import AlamatPage from "./pages/Alamat";
 import IdentitasPage from "./pages/Identitas";
 import Modal from "react-modal";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ProtectedRoute from './ProtectedRoute';
 
 Modal.setAppElement('#root');
 const router =  createBrowserRouter ([
@@ -32,7 +33,11 @@ const router =  createBrowserRouter ([
     },
     {
       path: '/homeLog',
-      element: <HomeLog/>
+      element: (
+        <ProtectedRoute>
+          <HomeLog />
+        </ProtectedRoute>
+      )
     },
     {
       path: '/changePassword',
@@ -55,8 +60,12 @@ const router =  createBrowserRouter ([
     element: <PinjamBukuPage />,
     },
     {
-    path: "/datadiri",
-    element: <DataDiriPage />,
+      path: "/datadiri",
+      element: (
+        <ProtectedRoute>
+          <DataDiriPage />
+        </ProtectedRoute>
+      )
     },
     {
     path: "/Alamat",
@@ -67,8 +76,12 @@ const router =  createBrowserRouter ([
     element: <IdentitasPage />,
     },
     {
-    path: "/formkoleksi",
-    element: <FormKoleksiPage />,
+      path: "/formkoleksi",
+      element: (
+        <ProtectedRoute>
+          <FormKoleksiPage />
+        </ProtectedRoute> 
+      )
     }
 ]);
 

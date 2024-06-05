@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Image, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import { Link } from "react-router-dom"
@@ -15,6 +16,7 @@ import { signInWithPopup } from 'firebase/auth';
 
 const SignInForm = () => {
     const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
 
     const handleCloseModal = () => setShowModal(false);
 
@@ -22,7 +24,6 @@ const SignInForm = () => {
         try {
             await createUserWithEmailAndPassword(auth, values.email, values.password);
             const user = auth.currentUser;
-            console.log(user);
             if (user){
                 await setDoc(doc(db, "UserRegister",user.uid), {
                     email: values.email,
@@ -34,7 +35,6 @@ const SignInForm = () => {
             console.log("Registered Successfully")
         } catch (error) {
             console.error(error.message);
-            
         }
     };
 
@@ -43,7 +43,6 @@ const SignInForm = () => {
         try {
           const result = await signInWithPopup(auth, provider);
           const user = result.user;
-          console.log(user);
           const userRef = doc(db, "UserRegister", user.uid);
           const userDoc = await getDoc(userRef);
           if (!userDoc.exists()) {
