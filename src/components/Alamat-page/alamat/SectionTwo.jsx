@@ -1,34 +1,84 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
 
-function SectionSecond({ onShowFirst }) {
-  const navigate = useNavigate();
+function SectionSecond({ onValidationChange }) {
+  const [provinces, setProvinces] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [villages, setVillages] = useState([]);
 
-  
-  const [formData, setFormData] = useState({
-    labelAlamat: '',
-    alamatLengkap: '',
-    catatan: '',
-    namaPenerima: '',
-    nomorHP: ''
-  });
-  
-  const handleInputChange = (event) => {
-    const { id, value } = event.target; 
-    setFormData(prevData => ({
-      ...prevData,
-      [id]: value
-    }));
+  const [selectedProvince, setSelectedProvince] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedDistrict, setSelectedDistrict] = useState('');
+  const [selectedVillage, setSelectedVillage] = useState('');
+  const [alamatLengkap, setAlamatLengkap] = useState('');
+
+  useEffect(() => {
+    fetchProvinces();
+  }, []);
+
+  const fetchProvinces = async () => {
+    const response = await fetch('https://kanglerian.github.io/api-wilayah-indonesia/api/provinces.json');
+    const data = await response.json();
+    setProvinces(data);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate('/identitas');
+  const fetchCities = async (provinceId) => {
+    const response = await fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/${provinceId}.json`);
+    const data = await response.json();
+    setCities(data);
   };
 
-  const allInputsFilled = formData.labelAlamat && formData.alamatLengkap && formData.namaPenerima && formData.nomorHP;
+  const fetchDistricts = async (cityId) => {
+    const response = await fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/districts/${cityId}.json`);
+    const data = await response.json();
+    setDistricts(data);
+  };
+
+  const fetchVillages = async (districtId) => {
+    const response = await fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/villages/${districtId}.json`);
+    const data = await response.json();
+    setVillages(data);
+  };
+
+  const handleProvinceChange = (e) => {
+    const provinceId = e.target.value;
+    setSelectedProvince(provinceId);
+    fetchCities(provinceId);
+    setSelectedCity('');
+    setSelectedDistrict('');
+    setSelectedVillage('');
+    setVillages([]);
+  };
+
+  const handleCityChange = (e) => {
+    const cityId = e.target.value;
+    setSelectedCity(cityId);
+    fetchDistricts(cityId);
+    setSelectedDistrict('');
+    setSelectedVillage('');
+    setVillages([]);
+  };
+
+  const handleDistrictChange = (e) => {
+    const districtId = e.target.value;
+    setSelectedDistrict(districtId);
+    fetchVillages(districtId);
+  };
+
+  const handleVillageChange = (e) => {
+    const villageId = e.target.value;
+    setSelectedVillage(villageId);
+  };
+
+  const handleAlamatLengkapChange = (e) => {
+    setAlamatLengkap(e.target.value);
+  };
+
+  useEffect(() => {
+    const isValid = selectedProvince && selectedCity && selectedDistrict && selectedVillage && alamatLengkap;
+    onValidationChange(isValid);
+  }, [selectedProvince, selectedCity, selectedDistrict, selectedVillage, alamatLengkap, onValidationChange]);
 
   return (
     <div style={{
@@ -37,41 +87,63 @@ function SectionSecond({ onShowFirst }) {
       justifyContent: 'center',
       width: '627px',
       margin: 'auto',
-      boxSizing: 'border-box'}}>
-
+      boxSizing: 'border-box'
+    }}>
       <Form>
-        <h6 className="fw-bolder">Lengkapi detail alamat</h6>
         <hr></hr>
-        <Form.Group className="mb-2 mt-1" controlId="labelAlamat">
-          <Form.Label className='fw-bolder'>Label Alamat</Form.Label>
-          <Form.Control placeholder="Rumah" onChange={handleInputChange} />
+        <Form.Group className="mb-2" controlId="formProvince">
+          <Form.Label className='fw-bolder'>Provinsi</Form.Label>
+          <Form.Control as="select" value={selectedProvince} onChange={handleProvinceChange}>
+            <option value="">Pilih Provinsi</option>
+            {provinces.map(province => (
+              <option key={province.id} value={province.id}>
+                {province.name}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+        <Form.Group className="mb-2 mt-1" controlId="formCity">
+          <Form.Label className='fw-bolder'>Kabupaten/Kota</Form.Label>
+          <Form.Control as="select" value={selectedCity} onChange={handleCityChange} disabled={!selectedProvince}>
+            <option value="">Pilih Kabupaten/Kota</option>
+            {cities.map(regency => (
+              <option key={regency.id} value={regency.id}>
+                {regency.name}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+        <Form.Group className="mb-2 mt-1" controlId="formDistrict">
+          <Form.Label className='fw-bolder'>Kecamatan</Form.Label>
+          <Form.Control as="select" value={selectedDistrict} onChange={handleDistrictChange} disabled={!selectedCity}>
+            <option value="">Pilih Kecamatan</option>
+            {districts.map(district => (
+              <option key={district.id} value={district.id}>
+                {district.name}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+        <Form.Group className="mb-2 mt-1" controlId="formVillage">
+          <Form.Label className='fw-bolder'>Desa/Kelurahan</Form.Label>
+          <Form.Control as="select" value={selectedVillage} onChange={handleVillageChange} disabled={!selectedDistrict}>
+            <option value="">Pilih Desa/Kelurahan</option>
+            {villages.map(village => (
+              <option key={village.id} value={village.id}>
+                {village.name}
+              </option>
+            ))}
+          </Form.Control>
         </Form.Group>
         <Form.Group className="mb-2" controlId="alamatLengkap">
           <Form.Label className='fw-bolder'>Alamat Lengkap</Form.Label>
-          <Form.Control as="textarea" rows={3} placeholder='' onChange={handleInputChange} />
+          <Form.Control as="textarea" rows={3} placeholder='' value={alamatLengkap} onChange={handleAlamatLengkapChange} />
         </Form.Group>
-        <Form.Group className="mb-2" controlId="catatan">
+        <Form.Group className="mb-4" controlId="catatan">
           <Form.Label className='fw-bolder'>Catatan (Opsional)</Form.Label>
-          <Form.Control type="text" placeholder="" onChange={handleInputChange} />
-        </Form.Group>
-        <Form.Group className="mb-2" controlId="namaPenerima">
-          <Form.Label className='fw-bolder'>Nama Penerima</Form.Label>
-          <Form.Control type="text" placeholder="" onChange={handleInputChange} />
-        </Form.Group>
-        <Form.Group className="mb-4" controlId="nomorHP">
-          <Form.Label className='fw-bolder'>Nomor HP</Form.Label>
-          <Form.Control type="text" placeholder="" onChange={handleInputChange} />
+          <Form.Control type="text" placeholder="" />
         </Form.Group>
       </Form>
-
-      <div style={{ display: 'flex', gap: '1px' }} >
-        <Button className="col-4 me-1 fw-bolder" variant="dark" size="md" onClick={onShowFirst}>
-          Kembali
-        </Button>
-        <Button className="col-8 fw-bolder" variant="success" size="md" disabled={!allInputsFilled} onClick={handleSubmit}>
-          Simpan dan Lanjutkan
-        </Button>
-      </div>
     </div>
   );
 }
