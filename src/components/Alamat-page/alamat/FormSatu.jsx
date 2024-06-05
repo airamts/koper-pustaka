@@ -1,4 +1,4 @@
-import { useState } from 'react';
+{/*import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import ChooseAlamat from './ChooseOne';
 
@@ -25,4 +25,4 @@ function FormSatuAlamat() {
   );
 }
 
-export default FormSatuAlamat;
+export default FormSatuAlamat;*/}
