@@ -2,10 +2,10 @@ import NavigationBar from '../components/homepage/navigationBar';
 import Intro from '../components/homepage/intro';
 import Features from '../components/homepage/features';
 import RecentActivity from '../components/homepage/recentActivity';
-import Review from '../components/homepage/review';
 import Footer from '../components/homepage/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/landingPage.css"
+import ReviewBuku from '../components/homepage/reviewBuku/reviewBuku';
 
 const LandingPage = () => {
     return (
@@ -27,7 +27,7 @@ const LandingPage = () => {
             </div>
 
             <div id='review'>
-                <Review />
+                <ReviewBuku />
             </div>
 
             <div id='footer'>
