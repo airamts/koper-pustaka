@@ -3,10 +3,10 @@ import VerfificationNotif from '../components/homepage/verificationNotif';
 import Intro from '../components/homepage/intro';
 import Features from '../components/homepage/features';
 import RecentActivityLog from '../components/homepage/recentActivityLog';
-import Review from '../components/homepage/review';
 import Footer from '../components/homepage/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/landingPage.css"
+import ReviewBuku from '../components/homepage/reviewBuku/reviewBuku';
 
 const homeLog = () => {
     return (
@@ -32,7 +32,7 @@ const homeLog = () => {
             </div>
 
             <div id='review'>
-                <Review />
+                <ReviewBuku />
             </div>
 
             <div id='footer'>

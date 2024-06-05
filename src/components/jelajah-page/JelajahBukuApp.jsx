@@ -8,11 +8,14 @@ import Footer from "../homepage/footer.jsx";
 class JelajalahBukuApp extends React.Component {
   constructor(props) {
     super(props);
+    const allBooks = getBookData();
+    const sortedBooks = [...allBooks].sort((a, b) => b.peminjam - a.peminjam);
+    const top4Books = sortedBooks.slice(0, 4);
     this.state = {
       cards: getBookData(),
       search: "",
       activeTab: "all",
-      recommendCards: getBookData(),
+      recommendCards: top4Books,
     };
     this.onSearchTitleHandler = this.onSearchTitleHandler.bind(this);
     this.handleTabChange = this.handleTabChange.bind(this);
