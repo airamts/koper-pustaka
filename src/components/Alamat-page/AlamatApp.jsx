@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import ProgressBarAlamat from "./alamat/ProgressBar";
 import ProgressDeskripsiAl from "./alamat/ProgressDeskripsiAl";
 import ImageAlamat from "./alamat/Figure";
 import TitleAlamat from "./alamat/TitlePage";
 import TextAlamat from "./alamat/Question";
-import FormSatuAlamat from "./alamat/FormSatu";
+import Gabungan from "./alamat/gabungan";
 
 class Alamat extends React.Component {
+
+
 
   render() {
     return (
@@ -24,8 +26,10 @@ class Alamat extends React.Component {
             <ImageAlamat />
             <TitleAlamat />
           </div>
-          <TextAlamat />
-          <FormSatuAlamat />
+            <TextAlamat />
+            <Gabungan />
+          <div>
+          </div>
         </div>
       </div>
     );
