@@ -5,7 +5,7 @@ import { getReviewBook } from '../../../../utils/dataReviewBuku';
 import { getBookData } from '../../../../utils/dataBuku';
 
 const SectionTab = () => {
-  const [key, setKey] = useState('semua');
+  const [key, setKey] = useState('terbaru');
   const [visibleReviews, setVisibleReviews] = useState([]);
   const [reviewsCount, setReviewsCount] = useState(8); 
 
@@ -55,11 +55,6 @@ const SectionTab = () => {
         onSelect={(k) => setKey(k)} 
         className="mb-3 d-flex justify-content-center"
       >
-        <Tab eventKey="semua" title="Semua">
-          <Row>
-            {renderReviews(visibleReviews)}
-          </Row>
-        </Tab>
         <Tab eventKey="terbaru" title="Terbaru">
           <Row>
             {renderReviews(visibleReviews)}

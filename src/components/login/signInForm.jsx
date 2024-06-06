@@ -16,13 +16,11 @@ const SignInForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            username: "",
             email: "",
             password: ""
         },
         onSubmit: registerUser,
         validationSchema: yup.object().shape({
-            username: yup.string().required("Username diperlukan").min(3, 'Paling tidak mengandung 3 karakter').max(10, 'Maksimal mengandung 10 karakter'),
             email: yup.string().required("Email diperlukan").email("Harus berupa email yang valid"),
             password: yup.string().required("Password diperlukan")
                 .matches(/[a-z]/, 'Password harus mengandung huruf kecil')
@@ -42,12 +40,6 @@ const SignInForm = () => {
     return (
         <Form className='loginForm' onSubmit={formik.handleSubmit}>
             <h1>Daftar Koper Pustaka</h1>
-            <Form.Group className="mb-3" controlId="formBasicUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="username" className='font-italic' placeholder="Masukkan nama kamu" onChange={handleForm} onBlur={formik.handleBlur} name='username' isInvalid={formik.touched.username && formik.errors.username} />
-                <Form.Control.Feedback type="invalid">{formik.errors.username}</Form.Control.Feedback>
-            </Form.Group>
-
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" className='font-italic' placeholder="Masukkan email kamu" onChange={handleForm} onBlur={formik.handleBlur} name='email' isInvalid={formik.touched.email && formik.errors.email} />
