@@ -34,7 +34,7 @@ function DetailBookBody({
         />
         <DetailBookFooter
           icon="/images/icon-peminjam.svg"
-          type="Peminjam:"
+          type="Jumlah Peminjam:"
           fill={peminjam}
         />
         <DetailBookFooter

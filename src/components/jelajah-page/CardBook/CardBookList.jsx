@@ -17,6 +17,7 @@ function CardBookList({ cards }) {
             durationInMonths={card.durationInMonths}
             category={card.category}
             available={card.available}
+            peminjam={card.peminjam}
             {...cards}
           />
         ))

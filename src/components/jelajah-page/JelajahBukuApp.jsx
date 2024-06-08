@@ -8,11 +8,14 @@ import Footer from "../homepage/footer.jsx";
 class JelajalahBukuApp extends React.Component {
   constructor(props) {
     super(props);
-    const allBooks = getBookData();
-    const sortedBooks = [...allBooks].sort((a, b) => b.peminjam - a.peminjam);
+    if (!localStorage.getItem("books")) {
+      localStorage.setItem("books", JSON.stringify(getBookData()));
+    }
+    const allBooks = JSON.parse(localStorage.getItem("books")) || [];
+    const sortedBooks = [...allBooks].sort((a, b) => a.antrian - b.antrian);
     const top4Books = sortedBooks.slice(0, 4);
     this.state = {
-      cards: getBookData(),
+      cards: allBooks,
       search: "",
       activeTab: "all",
       recommendCards: top4Books,
