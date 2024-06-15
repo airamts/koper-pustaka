@@ -11,6 +11,7 @@
     "scss": "sass --watch styles:scss"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.19.3",
     "bootstrap": "^5.3.3",
     "chunks": "^0.2.6",
     "formik": "^2.4.6",
