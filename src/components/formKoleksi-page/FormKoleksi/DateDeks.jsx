@@ -1,11 +1,24 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-import { useFormKoleksi } from './FormulirValidasiKoleksi';
+import { addMonths, format } from 'date-fns';
+
+function useFormKoleksi() {
+  const [dateAndDescriptionFilled, setDateAndDescriptionFilled] = useState(false);
+  const [pinjamBukuSelected, setPinjamBukuSelected] = useState(false);
+
+  return {
+    dateAndDescriptionFilled,
+    setDateAndDescriptionFilled,
+    pinjamBukuSelected,
+    setPinjamBukuSelected
+  };
+}
 
 function DateDeskInput() {
   const { setDateAndDescriptionFilled, setPinjamBukuSelected } = useFormKoleksi();
   const [durasiPinjam, setDurasiPinjam] = useState('');
   const [deskripsiBuku, setDeskripsiBuku] = useState('');
+  const [tanggalBatas, setTanggalBatas] = useState('');
 
   useEffect(() => {
     const allFilled = durasiPinjam !== '' && deskripsiBuku.trim() !== '';
@@ -16,6 +29,14 @@ function DateDeskInput() {
     const value = event.target.value;
     setDurasiPinjam(value);
     setPinjamBukuSelected(value !== '');
+
+    if (value) {
+      const today = new Date();
+      const newDate = addMonths(today, parseInt(value));
+      setTanggalBatas(format(newDate, 'dd MMMM yyyy'));
+    } else {
+      setTanggalBatas('');
+    }
   };
 
   const handleDescriptionChange = (e) => {
@@ -34,13 +55,18 @@ function DateDeskInput() {
           value={durasiPinjam}
         >
           <option key='blankChoice' hidden value="" />
-          <option value="1">1 Bulan</option><hr></hr>
-          <option value="2">2 Bulan</option><hr></hr>
-          <option value="3">3 Bulan</option><hr></hr>
-          <option value="4">4 Bulan</option><hr></hr>
-          <option value="5">5 Bulan</option><hr></hr>
+          <option value="1">1 Bulan</option>
+          <option value="2">2 Bulan</option>
+          <option value="3">3 Bulan</option>
+          <option value="4">4 Bulan</option>
+          <option value="5">5 Bulan</option>
           <option value="6">6 Bulan</option>
         </Form.Select>
+        {tanggalBatas && (
+          <div className="mt-3 text-muted">
+            Tanggal Batas Peminjaman: {tanggalBatas}
+          </div>
+        )}
       </Form.Group>
       <Form.Group className="mb-3" controlId="deskripsiInput">
         <Form.Label className='fw-bolder'>Deskripsi Buku</Form.Label>
