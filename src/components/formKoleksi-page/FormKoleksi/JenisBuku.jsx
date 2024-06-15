@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
 import { useFormKoleksi } from './FormulirValidasiKoleksi';
 
 function JenisBukuOption() {
@@ -22,6 +23,9 @@ function JenisBukuOption() {
           <hr></hr>
           <option value="2">Non Full-Berantai</option>
         </Form.Select>
+        <Card className='mt-4'>
+          <Card.Body>Full- Berantai adalah jenis piminjaman buku yang dapat diteruskan peminjamannnya oleh pihak peminjam<br></br>Non-Full Berantai adalah jenis peminjaman buku dimana peminjan harus mengembalikan buku tersebut kepada pemilik</Card.Body>
+        </Card>
       </Form.Group>
     </Form>
   );
