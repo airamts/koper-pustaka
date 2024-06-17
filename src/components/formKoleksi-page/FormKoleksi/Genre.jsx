@@ -25,13 +25,13 @@ function GenreOption() {
             hidden
             value
           />
-          <option value="romance">Romance</option>
+          <option value="Romance">Romance</option>
           <hr></hr>
-          <option value="history">History</option>
+          <option value="Misteri">Mistery</option>
           <hr></hr>
-          <option value="animasi">Animasi</option>
+          <option value="Animasi">Animasi</option>
           <hr></hr>
-          <option value="adventure">Adventure</option>
+          <option value="Adventure">Adventure</option>
         </Form.Select>
       </Form.Group>
     </Form>

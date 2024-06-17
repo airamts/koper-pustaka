@@ -36,6 +36,7 @@ const handleFormKoleksi = async (formData) => {
       terms: termsChecked,
       star: parseInt(formData.get('rating_givenß'), 10),
       coverImageUrl,
+      statusBuku: true,
     };
 
     // Add book document to 'books' collection
