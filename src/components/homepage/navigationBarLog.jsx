@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Navbar, Container, Nav, Image, Button, Popover, Toast } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+import { useEffect } from 'react';
 
 import logoImage from "/assets/Logo/Logo.svg";
 import searchIcon from "/assets/Icon/ic_round-search.svg";
@@ -10,7 +11,15 @@ import maintain from "/assets/Illustration/maintain.svg";
 const NavigationBarLog = () => {
     const [showPopover, setShowPopover] = useState(false);
     const [showA, setShowA] = useState(false);
+    const [username, setUsername] = useState('');
     const location = useLocation();
+
+    useEffect(() => {
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+            setUsername(storedUsername);
+        }
+    }, []);
 
     const toggleShowA = () => setShowA(!showA);
     const togglePopover = () => setShowPopover(!showPopover);
@@ -22,6 +31,12 @@ const NavigationBarLog = () => {
         } else {
             setShowA(true);
         }
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('username');
+        window.location.href = '/login';
     };
 
     return (
@@ -87,6 +102,11 @@ const NavigationBarLog = () => {
                                         <Link to="/login" onClick={togglePopover} className="logout">Log Out</Link>
                                     </Popover.Body>
                                 </Popover>
+                            )}
+                            {username && (
+                                <div className="username" style={{ textAlign: 'center', marginTop: '8px', fontSize: '14px' }}>
+                                    {username}
+                                </div>
                             )}
                         </div>
                     </Navbar.Collapse>

@@ -26,7 +26,10 @@ const LoginForm = () => {
 
     const loginUser = async (values) => {
         try{
-            await signInWithEmailAndPassword(auth, values.email, values.password);
+            const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
+            const user = userCredential.user;
+            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('username', user.displayName || user.email);
             console.log("login successfully")
             navigate('/homeLog');
         } catch (error) {
@@ -39,7 +42,8 @@ const LoginForm = () => {
         try {
           const result = await signInWithPopup(auth, provider);
           const user = result.user;
-          console.log(user);
+          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('username', user.displayName || user.email);
           console.log("login successfully")
           navigate('/homeLog');
         } catch (error) {

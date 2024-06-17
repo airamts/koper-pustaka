@@ -3,7 +3,7 @@ import Figure from 'react-bootstrap/Figure';
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import { REACT_APP_GOOGLE_MAPS_KEY } from "../constants";
 
-function SectionFirst() {
+function SectionFist({onMarkerPositionChange}) {
   const [markerPosition, setMarkerPosition] = useState({ lat: -6.200000, lng: 106.816666 }); 
 
   const { isLoaded, loadError } = useLoadScript({
@@ -19,9 +19,8 @@ function SectionFirst() {
   const handleMapClick = useCallback(async (event) => {
     const newMarkerPosition = { lat: event.latLng.lat(), lng: event.latLng.lng() };
     setMarkerPosition(newMarkerPosition);
-  }, []);
-
-
+    onMarkerPositionChange(newMarkerPosition);
+  }, [onMarkerPositionChange]);
 
   if (loadError) return <div>Error loading maps</div>;
   if (!isLoaded) return <div>Loading Maps...</div>;
@@ -52,4 +51,4 @@ function SectionFirst() {
   );
 }
 
-export default SectionFirst;
+export default SectionFist;
