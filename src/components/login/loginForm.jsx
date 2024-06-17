@@ -9,7 +9,7 @@ import * as yup from 'yup';
 import { useState } from 'react';
 
 import { signInWithEmailAndPassword } from 'firebase/auth/web-extension';
-import { auth } from '../../firebase-config';
+import { auth } from '../../firebase/config';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { signInWithPopup } from 'firebase/auth';
 

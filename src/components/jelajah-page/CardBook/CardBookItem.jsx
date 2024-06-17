@@ -11,6 +11,7 @@ function CardBookItem({
   category,
   available,
   image,
+  peminjam,
 }) {
   return (
     <Link
@@ -36,6 +37,7 @@ function CardBookItem({
           title={title}
           category={category}
           available={available}
+          peminjam={peminjam}
         />
       </div>
     </Link>

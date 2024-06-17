@@ -96,7 +96,7 @@ class DetailBukuApp extends React.Component {
             image3={book.image3}
           />
           <h4 className="mb-0 text-center fw-bold">{book.title}</h4>
-          <DetailBookTag category={book.category} />
+          <DetailBookTag category={book.category} peminjam={book.peminjam} />
           <DetailBookBody
             author={book.author}
             durationInMonths={book.durationInMonths}

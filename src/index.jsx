@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import Login from './pages/login';
 import LandingPage from './pages/home';
 import SignIn from './pages/signIn';
@@ -15,6 +15,7 @@ import AlamatPage from "./pages/Alamat";
 import IdentitasPage from "./pages/Identitas";
 import Modal from "react-modal";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { FormKoleksiContext } from './components/formKoleksi-page/FormKoleksi/FormulirValidasiKoleksi';
 import ProtectedRoute from './ProtectedRoute';
 
 Modal.setAppElement('#root');
@@ -50,13 +51,13 @@ const router =  createBrowserRouter ([
     {
     path: "/jelajah",
     element: <JelajahPage />,
-    },
-    {
-    path: "/book/:title",
+  },
+  {
+    path: '/book/:title',
     element: <DetailPage />,
-    },
-    {
-    path: "/book/:title/:id/pinjam",
+  },
+  {
+    path: '/book/:title/:id/pinjam',
     element: <PinjamBukuPage />,
     },
     {
@@ -70,9 +71,9 @@ const router =  createBrowserRouter ([
     {
     path: "/Alamat",
     element: <AlamatPage />,
-    },
-    {
-    path: "/identitas",
+  },
+  {
+    path: '/identitas',
     element: <IdentitasPage />,
     },
     {
@@ -87,8 +88,10 @@ const router =  createBrowserRouter ([
 
 Modal.setAppElement('#root');
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <FormKoleksiContext.Provider>
+      <RouterProvider router={router} />
+    </FormKoleksiContext.Provider>
   </React.StrictMode>
 );

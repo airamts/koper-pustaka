@@ -1,5 +1,5 @@
-import React from "react";
-import FormulirKoleksi from "./FormKoleksi/FormulirKoleksi";
+import React from 'react';
+import FormulirKoleksi from './FormKoleksi/FormulirKoleksi';
 
 class FormKoleksi extends React.Component {
   render() {
@@ -7,7 +7,7 @@ class FormKoleksi extends React.Component {
       <div className="container-fluid">
         <h3 className="fw-bolder ms-5 mt-4">Aktifkan Koleksi Bukumu</h3>
         <FormulirKoleksi />
-        </div>
+      </div>
     );
   }
 }

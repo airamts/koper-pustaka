@@ -12,6 +12,7 @@ function CardBookBody({
   title,
   category,
   available,
+  peminjam,
 }) {
   return (
     <div className="card-body d-flex flex-column w-100">
@@ -19,7 +20,7 @@ function CardBookBody({
         <CardBookTagline category={category} available={available} />
         <CardBookTitle location={location} title={title} />
         <div className="d-flex w-100">
-          <CardBookReview />
+          <CardBookReview peminjam={peminjam} />
         </div>
         <div className="card-body__footer d-flex w-100 justify-content-between">
           <CardBookFooter type="Penulis" fill={author} />

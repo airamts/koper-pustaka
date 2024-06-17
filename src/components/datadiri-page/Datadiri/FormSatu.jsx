@@ -5,8 +5,7 @@ import { useFormData } from './FormulirValidation';
 
 function FormSatuDatadiri() {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthdate, setBirthdate] = useState('');
+  const [birthdate, setBirthdate] = useState('2003-07-13');
   const { setFormSatu, updateFormData } = useFormData();
 
   const handlePhoneNumberChange = (event) => {
@@ -16,31 +15,18 @@ function FormSatuDatadiri() {
     }
   };
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
 
   const handleBirthdayChange = (event) => {
     setBirthdate(event.target.value);
   };
 
   useEffect(() => {
-    setFormSatu(phoneNumber && email && birthdate);
-    updateFormData({phoneNumber, email, birthdate});
-  }, [phoneNumber, email, birthdate, setFormSatu, updateFormData]);
+    setFormSatu(phoneNumber && birthdate);
+    updateFormData({phoneNumber, birthdate});
+  }, [phoneNumber, birthdate, setFormSatu, updateFormData]);
 
   return (
     <Form>
-      <Form.Group className="mb-3 fw-bolder" controlId="exampleForm.ControlInput1">
-        <Form.Label>Username</Form.Label>
-        <Form.Control 
-        className='fw-light fst-italic' 
-        type="email" 
-        placeholder="Masukan username kamu" 
-        value={email}
-        onChange={handleEmailChange}
-        />
-      </Form.Group>
       <Form.Group className="mb-3 fw-bolder" controlId="exampleForm.ControlInput2">
         <Form.Label>Tanggal Lahir</Form.Label>
         <Form.Control 

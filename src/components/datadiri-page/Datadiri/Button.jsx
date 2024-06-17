@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFormData } from './FormulirValidation';
 import Button from 'react-bootstrap/Button';
 
-import { db, auth } from '../../../firebase-config';
+import { db, auth } from '../../../firebase/config';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 function ButtonDatadiri() {

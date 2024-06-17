@@ -5,7 +5,7 @@ import SectionSecond from './SectionTwo';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
-import { db, auth } from '../../../firebase-config';
+import { db, auth } from '../../../firebase/config';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 function Gabungan() {
