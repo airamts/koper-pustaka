@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import { useFormKoleksi } from './FormulirValidasiKoleksi';
+import { addMonths, format } from 'date-fns';
 
 function DateDeskInput() {
   const { setDateAndDescriptionFilled, setPinjamBukuSelected, setDurasiPinjamBukuState, durasiPinjamBukuState, setDeskripsiBukuState, deskripsiBukuState } = useFormKoleksi();
   const [durasiPinjam, setDurasiPinjam] = useState('');
   const [deskripsiBuku, setDeskripsiBuku] = useState('');
+  const [tanggalBatas, setTanggalBatas] = useState('');
 
   useEffect(() => {
     const allFilled = durasiPinjam !== '' && deskripsiBuku.trim() !== '';
@@ -15,8 +17,16 @@ function DateDeskInput() {
   const handleSelectChange = (event) => {
     const value = parseInt(event.target.value, 10); // Changed: Ensure value is an integer
     setDurasiPinjam(value);
-    // setPinjamBukuSelected(value !== '');
     setDurasiPinjamBukuState(value);
+
+    if (value) {
+      const today = new Date();
+      const newDate = addMonths(today, value);
+      const formattedDate = format(newDate, 'dd MMMM yyyy'); // Format tanggal menggunakan date-fns
+      setTanggalBatas(formattedDate);
+    } else {
+      setTanggalBatas('');
+    }
   };
 
   const handleDescriptionChange = (e) => {
@@ -50,6 +60,7 @@ function DateDeskInput() {
           <option value={5}>5 Bulan</option>
           <option value={6}>6 Bulan</option>
         </Form.Select>
+        {tanggalBatas && <div className="mt-3 text-muted">Tanggal Batas Peminjaman: {tanggalBatas}</div>}
       </Form.Group>
       <Form.Group
         className="mb-3"

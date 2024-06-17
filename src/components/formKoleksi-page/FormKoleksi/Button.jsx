@@ -16,6 +16,18 @@ function ButtonKoleksi() {
   const handler = () => {};
 
   const handleModalInputClick = () => {
+    console.log('Form validation state:', {
+      jenis_buku: jenisBukuState,
+      judul_buku: judulBuku,
+      penulis_buku: penulisBuku,
+      durasi_pinjam_buku: durasiPinjamBukuState,
+      genre_buku: genreBuku,
+      deskripsi_buku: deskripsiBukuState,
+      delivery_methods: deliveryMethodsState,
+      terms_checked: Object.values(termsCheckedState).every((value) => value),
+      rating_given: ratingGivenState,
+      file: fileUploadedState,
+    });
     if (isFormValid) {
       setShowModalKoleksi(true);
       setShowError(false);

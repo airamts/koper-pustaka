@@ -48,7 +48,7 @@ const NavigationBarLog = () => {
                 </Container>
             </Navbar>
 
-            <Toast show={showA} onClose={toggleShowA} className="custom-toast">
+            <Toast show={showA} className="custom-toast">
                 <Toast.Header>
                     <strong className="me-auto">Pengumuman!</strong>
                     <img
@@ -56,6 +56,9 @@ const NavigationBarLog = () => {
                         className="rounded me-2"
                         alt=""
                     />
+                    <button type="button" className="close" aria-label="Close" onClick={toggleShowA}>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </Toast.Header>
                 <Toast.Body>Maaf halaman ini sedang dalam tahap development 👷‍♂️</Toast.Body>
             </Toast>
