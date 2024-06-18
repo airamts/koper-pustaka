@@ -40,6 +40,7 @@ function CardBookListFromDB() {
             durationInMonths={book.waktuPinjam} // Adjust with your actual field name from Firestore
             category={book.genre} // Adjust with your actual field name from Firestore
             available={book.statusBuku}
+            owner={book.pemilikBuku}
             {...book} // Pass all other data as props to CardBookItem
           />
         ))
