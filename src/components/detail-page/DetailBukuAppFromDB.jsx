@@ -7,9 +7,10 @@ import BookDescription from './DetailBook/BookDescription';
 import DetailBookTag from './DetailBook/DetailBookTag';
 import ReviewBookList from './ReviewBook/ReviewBookList';
 import { Link } from 'react-router-dom';
-import { getBookData } from '../../utils/dataBuku';
+import { db } from '../../firebase/config';
+import { collection, getDocs } from 'firebase/firestore';
 
-const DetailBukuApp = () => {
+const DetailBukuAppFromDB = () => {
   const { title } = useParams();
   const [book, setBook] = useState(null);
   const [error, setError] = useState(null);
@@ -17,13 +18,21 @@ const DetailBukuApp = () => {
   const reviewBookRef = useRef(null);
 
   useEffect(() => {
-    const loadBookData = () => {
-      const bookData = getBookData();
-      const foundBook = bookData.find((book) => book.title === title);
-      if (foundBook) {
-        setBook(foundBook);
-      } else {
-        setError('Buku tidak ditemukan');
+    const loadBookData = async () => {
+      try {
+        const booksCollectionRef = collection(db, 'books');
+        const booksSnapshot = await getDocs(booksCollectionRef);
+        const booksFromDB = booksSnapshot.docs.map((doc) => doc.data());
+
+        const foundBook = booksFromDB.find((book) => book.judulBuku === title);
+        if (foundBook) {
+          setBook(foundBook);
+        } else {
+          setError('Buku tidak ditemukan');
+        }
+      } catch (error) {
+        console.error('Error fetching book data:', error);
+        setError('Error fetching book data');
       }
     };
 
@@ -76,27 +85,27 @@ const DetailBukuApp = () => {
       <div className="detail-book d-flex flex-column justify-content-center gap-4">
         <h4 className="mb-4 text-start fw-bold fs-5">Detail Buku</h4>
         <BookCarousel
-          image={book.image}
-          image2={book.image2}
-          image3={book.image3}
+          image={book.coverImageUrl}
+          image2={book.coverImageUrl}
+          image3={book.coverImageUrl}
         />
         <h4 className="mb-0 text-center fw-bold">{book.judulBuku}</h4>
         <DetailBookTag
-          category={book.category}
+          category={book.genre}
           peminjam={book.peminjam}
         />
         <DetailBookBody
-          author={book.author}
-          durationInMonths={book.durationInMonths}
+          author={book.penulisBuku}
+          durationInMonths={book.waktuPinjam}
           peminjam={book.peminjam}
           antrian={book.antrian}
           location={book.location}
           owner={book.owner}
           id={book.id}
-          isAvailable={book.isAvailable}
-          image={book.image}
+          isAvailable={book.statusBuku}
+          image={book.coverImageUrl}
           avatar={book.avatar}
-          title={book.title}
+          title={book.judulBuku}
           handleUpdateQueue={handleUpdateQueue}
         />
         <div className="book-detail__desc-review d-flex flex-column">
@@ -105,7 +114,7 @@ const DetailBukuApp = () => {
             handleScrollToReview={handleScrollToReview}
           />
           <div ref={bookDescriptionRef}>
-            <BookDescription description={book.description} />
+            <BookDescription description={book.deskripsi} />
           </div>
           {Array.isArray(book.reviews) && book.reviews.length > 0 ? (
             <div
@@ -130,4 +139,4 @@ const DetailBukuApp = () => {
   );
 };
 
-export default DetailBukuApp;
+export default DetailBukuAppFromDB;
