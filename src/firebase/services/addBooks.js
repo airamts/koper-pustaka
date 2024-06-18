@@ -40,7 +40,7 @@ const handleFormKoleksi = async (formData) => {
      }
  
      const userData = userDoc.data();
-     const pemilikBuku = userData.username || user.email;
+     const pemilikBuku = user.email;
 
     // Prepare book data
     const docData = {

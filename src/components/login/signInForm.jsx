@@ -27,7 +27,6 @@ const SignInForm = () => {
             if (user){
                 await setDoc(doc(db, "UserRegister",user.uid), {
                     email: values.email,
-                    username: values.username,
                     password: values.password,
                 });
                 setShowModal(true);
@@ -48,7 +47,6 @@ const SignInForm = () => {
           if (!userDoc.exists()) {
             await setDoc(userRef, {
               email: user.email,
-              username: user.displayName,
               password: "",
             });
           }
