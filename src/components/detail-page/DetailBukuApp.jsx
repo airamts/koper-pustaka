@@ -93,7 +93,7 @@ const DetailBukuApp = () => {
           location={book.location}
           owner={book.owner}
           id={book.id}
-          isAvailable={book.isAvailable}
+          isAvailable={book.available}
           image={book.image}
           avatar={book.avatar}
           title={book.title}
