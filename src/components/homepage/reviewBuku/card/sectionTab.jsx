@@ -6,13 +6,13 @@ import { getBookData } from '../../../../utils/dataBuku';
 
 const SectionTab = () => {
   const [key, setKey] = useState('terbaru');
-  const [visibleReviews, setVisibleReviews] = useState([]);
+  const [visibleLatestReviews, setVisibleLatestReviews] = useState([]);
+  const [visiblePopularReviews, setVisiblePopularReviews] = useState([]);
   const [reviewsCount, setReviewsCount] = useState(8);
 
   const reviews = getReviewBook();
   const books = getBookData();
 
-  // Fungsi untuk mengonversi nama bulan menjadi angka
   const monthToNumber = (month) => {
     const monthMap = {
       'Januari': 0,
@@ -31,23 +31,37 @@ const SectionTab = () => {
     return monthMap[month];
   };
 
-  // Fungsi untuk mengurutkan ulasan berdasarkan tanggal
   const sortByReviewDate = (a, b) => {
     const dateA = new Date(a.date.year, monthToNumber(a.date.month), a.date.day);
     const dateB = new Date(b.date.year, monthToNumber(b.date.month), b.date.day);
-    return dateB - dateA; // Urutan dari terbaru ke terlama
+    return dateB - dateA;
+  };
+
+  const sortByPopularity = (a, b) => b.numberLoan - a.numberLoan;
+
+  const sortByCustomOrder = (reviews) => {
+    
+    const customOrder = [1, 8, 7, 6, 5, 4, 3, 2];
+    
+    const sortedByCustomOrder = customOrder.map(number => 
+      reviews
+        .filter(review => review.numberLoan === number)
+        .sort(sortByReviewDate)  
+    ).flat(); 
+    
+    return sortedByCustomOrder;
   };
 
   useEffect(() => {
-    // Urutkan ulasan berdasarkan tanggal sebelum diset ke state
-    const sortedReviews = [...reviews].sort(sortByReviewDate); // Pastikan kita mengurutkan salinan dari ulasan
-    setVisibleReviews(sortedReviews.slice(0, reviewsCount));
-  }, [reviewsCount]);
+    const customOrderedReviews = sortByCustomOrder(reviews);
+    setVisibleLatestReviews(customOrderedReviews.slice(0, reviewsCount));
 
-  // Fungsi untuk merender ulasan
+    const sortedByPopularity = [...reviews].sort(sortByPopularity);
+    setVisiblePopularReviews(sortedByPopularity.slice(0, reviewsCount));
+  }, [key, reviews, reviewsCount]);
+
   const renderReviews = (reviewsToRender) => {
     return reviewsToRender.map((review, index) => {
-      // Tetapkan buku untuk setiap ulasan berdasarkan indeks ulasan untuk konsistensi
       const book = books[index % books.length];
       return (
         <Col key={review.id} sm={6} md={3}>
@@ -65,7 +79,6 @@ const SectionTab = () => {
     });
   };
 
-  // Fungsi untuk menangani penambahan jumlah ulasan yang ditampilkan
   const handleShowMore = () => {
     setReviewsCount(reviewsCount + 8);
   };
@@ -79,12 +92,12 @@ const SectionTab = () => {
       >
         <Tab eventKey="terbaru" title="Terbaru">
           <Row>
-            {renderReviews(visibleReviews)} {/* Menggunakan ulasan yang sudah diurutkan */}
+            {renderReviews(visibleLatestReviews)}
           </Row>
         </Tab>
         <Tab eventKey="terpopuler" title="Terpopuler">
           <Row>
-            {renderReviews(visibleReviews)} {/* Tetap menggunakan ulasan yang sama untuk tab terpopuler */}
+            {renderReviews(visiblePopularReviews)}
           </Row>
         </Tab>
       </Tabs>
