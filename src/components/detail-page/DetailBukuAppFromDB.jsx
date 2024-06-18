@@ -100,7 +100,7 @@ const DetailBukuAppFromDB = () => {
           peminjam={book.peminjam}
           antrian={book.antrian}
           location={book.location}
-          owner={book.owner}
+          owner={book.pemilikBuku}
           id={book.id}
           isAvailable={book.statusBuku}
           image={book.coverImageUrl}
