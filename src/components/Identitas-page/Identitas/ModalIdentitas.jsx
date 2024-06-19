@@ -9,7 +9,7 @@ function ModalIdentitas(props) {
 
   const handleBackBeranda = () => {
     props.onHide(); // Menyembunyikan modal
-    navigate('/home'); // Navigasi kembali ke Beranda
+    navigate('/homeLog'); // Navigasi kembali ke Beranda
   };
 
   const centeredStyle = {
