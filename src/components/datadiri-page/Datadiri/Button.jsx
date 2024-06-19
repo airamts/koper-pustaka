@@ -1,22 +1,44 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormData } from './FormulirValidation';
 import Button from 'react-bootstrap/Button';
 
+import { db, auth } from '../../../firebase/config';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+
 function ButtonDatadiri() {
-  const { isFormValid } = useFormData();
+  const { isFormValid, formData } = useFormData();
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
+  const user = auth.currentUser;
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (isFormValid) {
-      navigate('/Alamat');
-    } else {
+      try {
+        await addDoc(collection(db, "datadiri"), {
+          ...formData,
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp(),
+          userId: user.uid,
+          });
+        navigate('/Alamat');
+      } catch (e) {
+        console.error("error adding document: ",e);
+        alert('Terjadi kesalahan saat menulis data. Silakan coba lagi.');
+      }
+    } else{
       setShowError(true);
     }
   };
-
+  
   useEffect(() => {
     let timer;
     if (showError) {
@@ -34,15 +56,15 @@ function ButtonDatadiri() {
         className='fw-bolder'
         variant="success"
         size="md"
-      >
+        >
         Simpan dan Lanjutkan
       </Button>
       {showError && !isFormValid && (
-        <div 
-        className='fw-light fst-italic'
-        style={{ color: 'black', marginTop: '1px' }}>
+        <div
+          className='fw-light fst-italic'
+          style={{ color: 'black', marginTop: '1px' }}>
           *Semua field harus diisi sebelum melanjutkan.
-        </div>
+        </div>  
       )}
     </div>
   );

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Image, Modal } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import logoImage from "/assets/Logo/Logo.svg";
@@ -7,9 +8,15 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useState } from 'react';
 
+import { signInWithEmailAndPassword } from 'firebase/auth/web-extension';
+import { auth } from '../../firebase/config';
+import { GoogleAuthProvider } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
+
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
 
     const handleCloseModal = () => setShowModal(false);
 
@@ -17,15 +24,39 @@ const LoginForm = () => {
         setShowPassword(!showPassword);
     }
 
+    const loginUser = async (values) => {
+        try{
+            const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
+            const user = userCredential.user;
+            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('username', user.displayName || user.email);
+            console.log("login successfully")
+            navigate('/homeLog');
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+    const signInWithGoogle = async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+          const result = await signInWithPopup(auth, provider);
+          const user = result.user;
+          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('username', user.displayName || user.email);
+          console.log("login successfully")
+          navigate('/homeLog');
+        } catch (error) {
+          console.error(error.message);
+        }
+      };
+
     const formik = useFormik ({
         initialValues: {
             email: "",
             password: ""
         },
-        onSubmit: (values) => {
-            setShowModal(true);
-            console.log("Form submitted with values:", values);
-        },
+        onSubmit: loginUser,
         validationSchema: yup.object().shape({
             email: yup.string().required("Email diperlukan").email("Harus berupa email yang valid"),
             password: yup.string().required("Password diperlukan")
@@ -89,7 +120,7 @@ const LoginForm = () => {
             </Form.Group>
 
             <Form.Group className='loginViaGoogle'>
-                <Link>
+                <Link onClick={signInWithGoogle}>
                     <Image src={googleLogo} alt="Google Logo" className="text-black googleLogo" />
                     <p className='linkTo'>Masuk dengan Google</p>
                 </Link>

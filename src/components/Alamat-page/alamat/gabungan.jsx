@@ -1,31 +1,80 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import SectionFirst from './SectionOne';
 import SectionSecond from './SectionTwo';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+
+import { db, auth } from '../../../firebase/config';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 function Gabungan() {
   const [isSecondSectionValid, setIsSecondSectionValid] = useState(false);
-
+  const [showError, setShowError] = useState(false);
+  const [markerPosition, setMarkerPosition] = useState(null);
+  const [secondSectionData, setSecondSectionData] = useState({});
   const navigate = useNavigate();
+  const user = auth.currentUser;
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
 
   const handleSecondSectionValidationChange = (isValid) => {
     setIsSecondSectionValid(isValid);
   };
 
-  const handleSubmit = (event) => {
+  const handleSecondSectionDataChange = (data) => {
+    setSecondSectionData(data);
+  };
+
+  const handleMarkerPositionChange = (position) => {
+    setMarkerPosition(position);
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (isSecondSectionValid) {
-      navigate('/identitas');
+    if (isSecondSectionValid && markerPosition) {
+      try {
+        await addDoc(collection(db, "alamat"), {
+          ...secondSectionData,
+          markerPosition,
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp(),
+          userId: user.uid,
+        });
+        navigate('/identitas');
+      } catch (e) {
+        console.error("Error adding document: ", e);
+        alert('Terjadi kesalahan saat menulis data. Silakan coba lagi.');
+      }
     } else {
-      alert('Semua field harus diisi sebelum melanjutkan.');
+      setShowError(true);
     }
   };
 
+  useEffect(() => {
+    let timer;
+    if (showError) {
+      timer = setTimeout(() => {
+        setShowError(false);
+      }, 5000);
+    }
+    return () => clearTimeout(timer);
+  }, [showError]);
+
   return (
     <div>
-      <SectionSecond onValidationChange={handleSecondSectionValidationChange} />
-      <SectionFirst />
+      {showError && (
+        <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+          Semua field harus diisi sebelum melanjutkan.
+        </Alert>
+      )}
+      <SectionSecond onValidationChange={handleSecondSectionValidationChange}
+      onDataChange={handleSecondSectionDataChange} />
+      <SectionFirst onMarkerPositionChange={handleMarkerPositionChange} />
       
       <div style={{ display: 'flex', gap: '1px', marginTop: '10px' }}>
         <Button
@@ -33,7 +82,7 @@ function Gabungan() {
           variant="success"
           size="md"
           onClick={handleSubmit}
-          disabled={!isSecondSectionValid}
+          disabled={!isSecondSectionValid || !markerPosition}
         >
           Simpan dan Lanjutkan
         </Button>

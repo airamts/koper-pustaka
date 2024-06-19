@@ -1,4 +1,3 @@
-// <<<<<<< HEAD
 import React, { useContext } from 'react';
 import FormKoleksi from '../components/formKoleksi-page/FormKoleksi';
 import { FormKoleksiContext } from '../components/formKoleksi-page/FormKoleksi/FormulirValidasiKoleksi';

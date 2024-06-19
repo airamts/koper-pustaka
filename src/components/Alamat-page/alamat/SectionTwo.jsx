@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 
-function SectionSecond({ onValidationChange }) {
+function SectionSecond({ onValidationChange, onDataChange }) {
   const [provinces, setProvinces] = useState([]);
   const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -43,41 +43,56 @@ function SectionSecond({ onValidationChange }) {
 
   const handleProvinceChange = (e) => {
     const provinceId = e.target.value;
+    //const provinceName = provinces.find(province => province.id === provinceId).name;
     setSelectedProvince(provinceId);
     fetchCities(provinceId);
     setSelectedCity('');
     setSelectedDistrict('');
     setSelectedVillage('');
     setVillages([]);
+    //onAddressDataChange({ selectedProvince: provinceId, selectedCity: '', selectedDistrict: '', selectedVillage: '', alamatLengkap });
   };
 
   const handleCityChange = (e) => {
     const cityId = e.target.value;
+    //const cityName = city.find(city => city.id === cityId).name;
     setSelectedCity(cityId);
     fetchDistricts(cityId);
     setSelectedDistrict('');
     setSelectedVillage('');
     setVillages([]);
+    //onAddressDataChange({ selectedProvince, selectedCity: cityId, selectedDistrict: '', selectedVillage: '', alamatLengkap });
   };
 
   const handleDistrictChange = (e) => {
     const districtId = e.target.value;
     setSelectedDistrict(districtId);
     fetchVillages(districtId);
+    setSelectedVillage('');
+    //onAddressDataChange({ selectedProvince, selectedCity, selectedDistrict: districtId, selectedVillage: '', alamatLengkap });
   };
 
   const handleVillageChange = (e) => {
     const villageId = e.target.value;
     setSelectedVillage(villageId);
+    //onAddressDataChange({ selectedProvince, selectedCity, selectedDistrict, selectedVillage: villageId, alamatLengkap });
   };
 
   const handleAlamatLengkapChange = (e) => {
     setAlamatLengkap(e.target.value);
+    //onAddressDataChange({ selectedProvince, selectedCity, selectedDistrict, selectedVillage, alamatLengkap: e.target.value });
   };
 
   useEffect(() => {
     const isValid = selectedProvince && selectedCity && selectedDistrict && selectedVillage && alamatLengkap;
     onValidationChange(isValid);
+    onDataChange({
+      selectedProvince,
+      selectedCity,
+      selectedDistrict,
+      selectedVillage,
+      alamatLengkap
+    });
   }, [selectedProvince, selectedCity, selectedDistrict, selectedVillage, alamatLengkap, onValidationChange]);
 
   return (

@@ -1,10 +1,17 @@
-import { db, storage } from '../config';
+import { db, storage, auth } from '../config';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, addDoc, getDocs, doc, getDoc } from 'firebase/firestore';
+import {getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const handleFormKoleksi = async (formData) => {
   try {
     const file = formData.get('file');
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      throw new Error('Anda harus login untuk menambahkan buku.');
+    }
 
     // Upload file to Firebase Storage
     const storageRef = ref(storage, `file/${file.name}`);
@@ -24,6 +31,17 @@ const handleFormKoleksi = async (formData) => {
     const termsCheckedString = formData.get('terms_checked');
     const termsChecked = termsCheckedString === 'true'; // Convert string to boolean
 
+     // Fetch user data from Firestore
+     const userDocRef = doc(db, 'UserRegister', user.uid);
+     const userDoc = await getDoc(userDocRef);
+ 
+     if (!userDoc.exists()) {
+       throw new Error('Data pengguna tidak ditemukan di Firestore');
+     }
+ 
+     const userData = userDoc.data();
+     const pemilikBuku = user.email;
+
     // Prepare book data
     const docData = {
       jenisBuku: formData.get('jenis_buku'),
@@ -37,6 +55,8 @@ const handleFormKoleksi = async (formData) => {
       star: parseInt(formData.get('rating_givenß'), 10),
       coverImageUrl,
       statusBuku: true,
+      pemilikBuku,
+      ownerId: user.uid
     };
 
     // Add book document to 'books' collection

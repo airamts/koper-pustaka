@@ -9,7 +9,7 @@ function ModalKoleksi(props) {
 
   const handleBackHome = () => {
     props.onHide(); // Menyembunyikan modal
-    navigate('/home'); // Navigasi kembali ke Beranda
+    navigate('/homelog'); // Navigasi kembali ke Beranda
   };
 
   const centeredStyle = {

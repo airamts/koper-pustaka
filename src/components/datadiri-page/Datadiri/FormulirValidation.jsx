@@ -10,7 +10,7 @@ export const FormDataProvider = ({ children }) => {
 
   const [formSatu, setFormSatu] = useState(false);
   const [formDua, setFormDua] = useState(false);
-
+  const [formData, setFormData] = useState({});
   const [isFormValid, setFormValid] = useState(false);
 
   useEffect(() => {
@@ -21,12 +21,20 @@ export const FormDataProvider = ({ children }) => {
     }
   }, [formSatu, formDua]);
 
+  const updateFormData = (newData) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      ...newData
+    }));
+  };
 
   return (
     <FormDataContext.Provider value={{ 
       setFormSatu,
       setFormDua,
-      isFormValid }}>
+      isFormValid,
+      formData,
+      updateFormData }}>
       {children}
     </FormDataContext.Provider>
   );

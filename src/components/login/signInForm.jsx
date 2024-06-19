@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Image, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import { Link } from "react-router-dom"
@@ -5,14 +6,55 @@ import googleLogo from "/assets/Logo/Google Logo.svg"
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
+import { auth } from '../../firebase/config';
+import { db } from '../../firebase/config';
+import { getDoc, setDoc, doc } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
+import { GoogleAuthProvider } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
+
 const SignInForm = () => {
     const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
 
     const handleCloseModal = () => setShowModal(false);
 
-    const registerUser = () => {
-        setShowModal(true);
-    }
+    const registerUser = async (values) => {
+        try {
+            await createUserWithEmailAndPassword(auth, values.email, values.password);
+            const user = auth.currentUser;
+            if (user){
+                await setDoc(doc(db, "UserRegister",user.uid), {
+                    email: values.email,
+                    password: values.password,
+                });
+                setShowModal(true);
+            }
+            console.log("Registered Successfully")
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+    const signInWithGoogle = async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+          const result = await signInWithPopup(auth, provider);
+          const user = result.user;
+          const userRef = doc(db, "UserRegister", user.uid);
+          const userDoc = await getDoc(userRef);
+          if (!userDoc.exists()) {
+            await setDoc(userRef, {
+              email: user.email,
+              password: "",
+            });
+          }
+          setShowModal(true);
+        } catch (error) {
+          console.error(error.message);
+        }
+      };
 
     const formik = useFormik({
         initialValues: {
@@ -83,7 +125,7 @@ const SignInForm = () => {
             </Form.Group>
 
             <Form.Group className='loginViaGoogle'>
-                <Link>
+                <Link onClick={signInWithGoogle}>
                     <Image src={googleLogo} alt="Google Logo" className="text-black googleLogo" />
                     <p className='linkTo'>Masuk dengan Google</p>
                 </Link>
@@ -93,7 +135,7 @@ const SignInForm = () => {
                 <p>Sudah punya akun? <span><Link to="/login" className='linkTo'>Masuk di sini</Link></span></p>
             </Form.Group>
         </Form>
-    )
-}
+    );
+};
 
-export default SignInForm
+export default SignInForm;

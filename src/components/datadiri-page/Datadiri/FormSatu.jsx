@@ -6,7 +6,7 @@ import { useFormData } from './FormulirValidation';
 function FormSatuDatadiri() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [birthdate, setBirthdate] = useState('2003-07-13');
-  const { setFormSatu } = useFormData();
+  const { setFormSatu, updateFormData } = useFormData();
 
   const handlePhoneNumberChange = (event) => {
     const value = event.target.value.replace(/\D/g, '');
@@ -22,7 +22,8 @@ function FormSatuDatadiri() {
 
   useEffect(() => {
     setFormSatu(phoneNumber && birthdate);
-  }, [phoneNumber, birthdate, setFormSatu]);
+    updateFormData({phoneNumber, birthdate});
+  }, [phoneNumber, birthdate, setFormSatu, updateFormData]);
 
   return (
     <Form>
